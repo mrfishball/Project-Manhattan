@@ -66,7 +66,6 @@
       this.close();
     }.bind(this));
   };
-
   /**
    * Open Menu.
    */
@@ -77,7 +76,6 @@
     this.mask.classList.add('is-active');
     this.disableMenuOpeners();
   };
-
   /**
    * Close Menu.
    */
@@ -88,7 +86,6 @@
     this.mask.classList.remove('is-active');
     this.enableMenuOpeners();
   };
-
   /**
    * Disable Menu Openers.
    */
@@ -97,7 +94,6 @@
       item.disabled = true;
     });
   };
-
   /**
    * Enable Menu Openers.
    */
@@ -114,6 +110,10 @@
 
 })(window);
 
+
+/**
+ * Create new Menu objects.
+ */
 var slideLeft = new Menu({
   wrapper: '#wrapper',
   type: 'slide-left',

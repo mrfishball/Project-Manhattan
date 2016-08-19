@@ -19,13 +19,9 @@
 	     		<input id="pac-input" class="controls" type="text" placeholder="Search Maps">
 		    </nav>
 		  </header><!--header -->
-
 			<main class="content">
 		    <div class="container">
-<!-- 		      <div class="buttons">
-		        <button id="button-slide-left" class="c-button">Slide Left</button>
-		        <button id="button-slide-bottom" class="c-button">Slide Bottom</button>
-		      </div> -->
+		    	<div id="map"></div>
 		    </div><!-- container -->
 		  </main><!-- content -->
 		 </div><!-- wrapper -->
@@ -49,45 +45,19 @@
 		</nav><!-- Menu slide from bottom -->
 		
 		<div id="mask" class="mask"></div><!-- mask -->
-	    <!-- Footer -->
-	    <!-- <footer>
-	        <div class="container">
-	            <div class="row">
-	                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-	                    <ul class="list-inline text-center">
-	                        <li>
-	                            <a href="#">
-	                                <span class="fa-stack fa-lg">
-	                                    <i class="fa fa-circle fa-stack-2x"></i>
-	                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-	                                </span>
-	                            </a>
-	                        </li>
-	                        <li>
-	                            <a href="#">
-	                                <span class="fa-stack fa-lg">
-	                                    <i class="fa fa-circle fa-stack-2x"></i>
-	                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-	                                </span>
-	                            </a>
-	                        </li>
-	                        <li>
-	                            <a href="#">
-	                                <span class="fa-stack fa-lg">
-	                                    <i class="fa fa-circle fa-stack-2x"></i>
-	                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-	                                </span>
-	                            </a>
-	                        </li>
-	                    </ul>
-	                    <p class="copyright text-muted">Copyright &copy; A Simple Map 2016<br>By: Steven Kwok</p>
-	                </div>
-	            </div>
-	        </div>
-	    </footer> -->
-
-<!-- 		<script type="text/javascript" src="/static/js/jquery-2.2.4.min.js"></script>
-		<script type="text/javascript" src="/static/js/bootstrap.min.js"></script> -->
+		<script>
+			var map;
+			var mapDiv = document.getElementById('map');
+    	function initMap() {
+        map = new google.maps.Map(mapDiv, {
+            center: {lat: 44.540, lng: -78.546},
+            zoom: 8
+        });
+      }
+    </script>
+		<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoVzrmlxfvUBwId_KoqAF5PBnaHNDOEHU&callback=initMap">
+    </script>
 		<script type="text/javascript" src="static/js/menu.js"></script>
 	</body>
 </html>

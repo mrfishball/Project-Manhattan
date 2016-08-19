@@ -51,7 +51,13 @@
     	function initMap() {
         map = new google.maps.Map(mapDiv, {
             center: {lat: 44.540, lng: -78.546},
-            zoom: 8
+            zoom: 8,
+            mapTypeControl: false,
+          // For positioning Maps'type control
+          // 	mapTypeControlOptions: {
+          //     style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+          //     position: google.maps.ControlPosition.TOP_CENTER
+          // }
         });
       }
     </script>

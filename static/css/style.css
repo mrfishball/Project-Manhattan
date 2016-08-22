@@ -63,8 +63,8 @@ body.has-active-menu {
 		margin-left: 55px;
 	}
   .menu-slide-left {
-    max-width: 300px;
-    transform: translateX(-300px);
+    max-width: 400px;
+    transform: translateX(-400px);
   }
 }
 @media only screen and (min-device-width: 768px) {

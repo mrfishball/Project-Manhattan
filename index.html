@@ -43,24 +43,33 @@
 		</nav><!-- Menu slide from bottom -->
 		
 		<div id="mask" class="mask"></div><!-- mask -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		<script>
-			var map;
 			var mapDiv = document.getElementById('map');
-    	function initMap() {
-        map = new google.maps.Map(mapDiv, {
-            center: {lat: 44.540, lng: -78.546},
-            zoom: 8,
-            mapTypeControl: false,
-          // For positioning Maps'type control
-          // 	mapTypeControlOptions: {
-          //     style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-          //     position: google.maps.ControlPosition.TOP_CENTER
-          // }
-        });
-      }
+			var pos;
+			$.get( "http://ip-api.com/json", function(data) {
+				pos = new google.maps.LatLng(data.lat, data.lon);
+				initMap();
+			});
+			function initMap() {
+				var map = new google.maps.Map(mapDiv, {
+			    zoom: 14,
+			    center: pos,
+			    mapTypeControl: false
+			  });
+	      var marker = new google.maps.Marker({
+			    position: pos,
+			    map: map,
+			    draggable: false,
+    			animation: google.maps.Animation.DROP,
+			    title: 'Gotcha!'
+			  });
+			  marker.setMap(map);
+			}
     </script>
+
 		<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoVzrmlxfvUBwId_KoqAF5PBnaHNDOEHU&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoVzrmlxfvUBwId_KoqAF5PBnaHNDOEHU&libraries=places&callback=initMap">
     </script>
 		<script type="text/javascript" src="static/js/menu.js"></script>
 	</body>

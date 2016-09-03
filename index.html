@@ -47,39 +47,71 @@
 		<script>
 			var mapDiv = document.getElementById('map');
 			var pos;
+			var map;
 			$.get( "http://ip-api.com/json", function(data) {
 				pos = new google.maps.LatLng(data.lat, data.lon);
 				initMap();
 			});
+
 			function initMap() {
-				var map = new google.maps.Map(mapDiv, {
-			    zoom: 14,
-			    center: pos,
-			    mapTypeControl: false
+			  map = new google.maps.Map(mapDiv, {
+			    zoom: 16,
+          center: pos,
+          mapTypeControl: false
 			  });
-	      var marker = new google.maps.Marker({
-			    position: pos,
-			    map: map,
-			    draggable: false,
-    			animation: google.maps.Animation.DROP,
-			    title: 'Gotcha!'
-			  });
+
+			  // Display user's current location on the map
+	       var curr_marker = new google.maps.Marker({
+	        position: pos,
+	        map: map,
+	        draggable: false,
+	       animation: google.maps.Animation.DROP,
+	        title: 'Gotcha!'
+	      });
+
+			  var infowindow = new google.maps.InfoWindow();
+			  var service = new google.maps.places.PlacesService(map);
+			  service.nearbySearch({
+			    location: pos,
+			    radius: 500,
+			    type: ['store']
+			  }, callback);
+
 			  var contentString = '<div id="content">'+
-            '<h3>' + 'You are here!' + '</h3>' +
+            '<h3>' + 'This is you!' + '</h3>' +
             '</div>';
+         var curr_infowindow = new google.maps.InfoWindow();
+         curr_infowindow.setContent(contentString);
 
-        var infowindow = new google.maps.InfoWindow({
-          content: contentString
-        });
 
-        marker.addListener('click', function() {
-        	infowindow.open(map, marker);
+        curr_marker.addListener('click', function() {
+        curr_infowindow.open(map, curr_marker);
         });
-			  marker.setMap(map);
-			  infowindow.open(map, marker);
+        curr_marker.setMap(map);
+        curr_infowindow.open(map, curr_marker);
+			}
+
+			function callback(results, status) {
+			  if (status === google.maps.places.PlacesServiceStatus.OK) {
+			    for (var i = 0; i < results.length; i++) {
+			      createMarker(results[i]);
+			    }
+			  }
+			}
+
+			function createMarker(place) {
+			  var placeLoc = place.geometry.location;
+			  var marker = new google.maps.Marker({
+			    map: map,
+			    position: place.geometry.location
+			  });
+
+			  google.maps.event.addListener(marker, 'click', function() {
+			    infowindow.setContent(place.name);
+			    infowindow.open(map, this);
+			  });
 			}
     </script>
-
 		<script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoVzrmlxfvUBwId_KoqAF5PBnaHNDOEHU&libraries=places&callback=initMap">
     </script>

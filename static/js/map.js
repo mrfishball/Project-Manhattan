@@ -1,12 +1,13 @@
 var mapDiv = document.getElementById('map');
-var pos;
 var map;
+var pos;
 var infowindow;
 var search_place;
+
 $.get( "http://ip-api.com/json", function(data) {
-  pos = new google.maps.LatLng(data.lat, data.lon);
-  initMap();
-});
+    pos = new google.maps.LatLng(data.lat, data.lon);
+    initMap();
+  });
 
 function initMap() {
   map = new google.maps.Map(mapDiv, {
@@ -15,7 +16,7 @@ function initMap() {
     mapTypeControl: false
   });
 
-  // Display user's current location on the map
+  // Marker for the user's current location on the map
   var curr_marker = new google.maps.Marker({
     position: pos,
     map: map,
@@ -23,15 +24,17 @@ function initMap() {
    animation: google.maps.Animation.DROP
   });
 
-  // Display a label that indicates user's current location
+  // Info window of user's current location
   var contentString = '<div id="content">'+
       '<h3>' + 'This is you!' + '</h3>' +
       '</div>';
   var curr_infowindow = new google.maps.InfoWindow();
   curr_infowindow.setContent(contentString);
   
+  // Info window for nearby places
   infowindow = new google.maps.InfoWindow();
   
+  //Search nearby restaurants and display them on the map
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch({
     location: {lat: pos.lat(), lng: pos.lng()},
@@ -39,17 +42,18 @@ function initMap() {
     type: ['restaurant']
   }, callback);
 
-  // Display searched place on the map and marks it with a marker
+  // Auto complete for the search field
   var input = document.getElementById('pac-input');
   var autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.bindTo('bounds', map);
 
+  // Marker for the place searched by the user
   var search_marker = new google.maps.Marker({
     map: map,
-    animation: google.maps.Animation.DROP,
-    anchorPoint: new google.maps.Point(0, -29)
+    animation: google.maps.Animation.DROP
   });
 
+  // Display the place searched and put a marker and info window on that spot
   autocomplete.addListener('place_changed', function() {
     infowindow.close();
     search_marker.setVisible(false);
@@ -64,8 +68,9 @@ function initMap() {
       map.fitBounds(search_place.geometry.viewport);
     } else {
       map.setCenter(search_place.geometry.location);
-      map.setZoom(16);  // Why 17? Because it looks good.
+      map.setZoom(13);  // Why 17? Because it looks good.
     }
+    // Custom marker icon
     // search_marker.setIcon(/** @type {google.maps.Icon} */({
     //   url: search_place.icon,
     //   size: new google.maps.Size(71, 71),

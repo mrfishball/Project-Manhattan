@@ -31,7 +31,7 @@ body.has-active-menu {
 	  margin-top: 10px;
 	  box-shadow: 0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02);
 	  height: 50px;
-	  width: 400px;
+	  width: 320px;
 	}
 	input {
 		border: none;
@@ -66,6 +66,10 @@ body.has-active-menu {
     max-width: 400px;
     transform: translateX(-400px);
   }
+  #my-location {
+  	position: absolute;
+  	margin-left: 90%;
+  }
 }
 @media only screen and (min-device-width: 768px) {
 	.header-nav {
@@ -90,12 +94,12 @@ body.has-active-menu {
 		width: 95%;
 	}
 	.menu-slide-left {
-		width: 70%;
+		width: 80%;
 	}
 }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
 	.menu-slide-left {
-		width: 45%;
+		width: 55%;
 	}
 }
 /**

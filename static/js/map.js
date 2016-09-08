@@ -23,13 +23,6 @@ function initMap() {
     draggable: false,
    animation: google.maps.Animation.DROP
   });
-
-  // Info window of user's current location
-  var contentString = '<div id="content">'+
-      '<h3>' + 'This is you!' + '</h3>' +
-      '</div>';
-  var curr_infowindow = new google.maps.InfoWindow();
-  curr_infowindow.setContent(contentString);
   
   // Info window for nearby places
   infowindow = new google.maps.InfoWindow();
@@ -66,9 +59,11 @@ function initMap() {
     // If the place has a geometry, then present it on a map.
     if (search_place.geometry.viewport) {
       map.fitBounds(search_place.geometry.viewport);
+      map.setCenter(search_place.geometry.location);
+      map.setZoom(17);
     } else {
       map.setCenter(search_place.geometry.location);
-      map.setZoom(13);  // Why 17? Because it looks good.
+      map.setZoom(17);
     }
     // Custom marker icon
     // search_marker.setIcon(/** @type {google.maps.Icon} */({
@@ -90,15 +85,27 @@ function initMap() {
       ].join(' ');
     }
 
+    search_marker.addListener('click', function() {
+      slideLeft.open();
+      infowindow.setContent('<div><strong>' + search_place.name + '</strong><br>' + address);
+      infowindow.open(map, search_marker);
+    });
     infowindow.setContent('<div><strong>' + search_place.name + '</strong><br>' + address);
     infowindow.open(map, search_marker);
   });
 
+  // Info window of user's current location
+  var youAreHere = '<div id="content">'+
+      '<h3>' + 'This is you!' + '</h3>' +
+      '</div>';
+
   curr_marker.addListener('click', function() {
-  curr_infowindow.open(map, curr_marker);
+    infowindow.setContent(youAreHere);
+    infowindow.open(map, curr_marker);
   });
   curr_marker.setMap(map);
-  curr_infowindow.open(map, curr_marker);
+  infowindow.setContent(youAreHere);
+  infowindow.open(map, curr_marker);
 }
 
 function callback(results, status) {
@@ -117,6 +124,7 @@ function createMarker(place) {
   });
 
   google.maps.event.addListener(marker, 'click', function() {
+    slideLeft.open();
     infowindow.setContent(place.name);
     infowindow.open(map, this);
   });

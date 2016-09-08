@@ -39,8 +39,8 @@
   Menu.prototype.options = {
     wrapper: '#wrapper',          // The content wrapper
     type: 'slide-left',             // The menu type
-    menuOpenerClass: '.slider',   // The menu opener class names (i.e. the buttons)
-    maskId: '#mask'               // The ID of the mask
+    menuOpenerClass: '.slider'   // The menu opener class names (i.e. the buttons)
+    // maskId: '#mask'               // The ID of the mask
   };
 
   /**
@@ -49,9 +49,9 @@
   Menu.prototype._init = function() {
     this.body = document.body;
     this.wrapper = document.querySelector(this.options.wrapper);
-    this.mask = document.querySelector(this.options.maskId);
+    // this.mask = document.querySelector(this.options.maskId);
     this.menu = document.querySelector('#menu-' + this.options.type);
-    // this.closeBtn = this.menu.querySelector('.c-menu__close');
+    this.closeBtn = this.menu.querySelector('#close');
     this.menuOpeners = document.querySelectorAll(this.options.menuOpenerClass);
     this._initEvents();
   };
@@ -61,7 +61,7 @@
    */
   Menu.prototype._initEvents = function() {
     // Event for clicks on the mask.
-    this.mask.addEventListener('click', function(e) {
+    this.closeBtn.addEventListener('click', function(e) {
       e.preventDefault();
       this.close();
     }.bind(this));
@@ -73,7 +73,7 @@
     this.body.classList.add('has-active-menu');
     this.wrapper.classList.add('has-' + this.options.type);
     this.menu.classList.add('is-active');
-    this.mask.classList.add('is-active');
+    // this.mask.classList.add('is-active');
     this.disableMenuOpeners();
   };
   /**
@@ -83,7 +83,7 @@
     this.body.classList.remove('has-active-menu');
     this.wrapper.classList.remove('has-' + this.options.type);
     this.menu.classList.remove('is-active');
-    this.mask.classList.remove('is-active');
+    // this.mask.classList.remove('is-active');
     this.enableMenuOpeners();
   };
   /**
@@ -117,8 +117,8 @@
 var slideLeft = new Menu({
   wrapper: '#wrapper',
   type: 'slide-left',
-  menuOpenerClass: '.slider',
-  maskId: '#mask'
+  menuOpenerClass: '.slider'
+  // maskId: '#mask'
 });
 
 var slideLeftBtn = document.querySelector('#hamburger-menu');

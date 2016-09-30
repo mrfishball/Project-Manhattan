@@ -2,22 +2,38 @@
 	margin: 0; 
 	padding:0; 
 }
-body html {
+body, html {
   font-family: 'Roboto Condensed', sans-serif, Helvetica, Arial;
-  font-size: 1.5em;
+  font-size: 1em;
   height: 100%;
 }
 body.has-active-menu {
   overflow: hidden;
 }
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #000; 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: #fff; 
+}
 #wrapper {
-	height: 100%;
-	width: 100%;
+	-webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
 }
 #map {
 	height: 100vh;
 }
 @media all and (min-width: 320px) {
+	#wrapper.has-push-left {
+  -webkit-transform: translateX(415px);
+      -ms-transform: translateX(415px);
+          transform: translateX(415px);
+  }
 	.header-nav {
 		z-index: 100;
 		background-color: #fff;
@@ -29,6 +45,8 @@ body.has-active-menu {
 	  display: flex;
 	  align-items: center;
 	  margin-top: 10px;
+	  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02);
+		-moz-box-shadow: 0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02);
 	  box-shadow: 0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02);
 	  height: 50px;
 	  width: 320px;
@@ -69,16 +87,15 @@ body.has-active-menu {
   #my-location {
   	position: absolute;
   	margin-left: 90%;
+  	cursor: pointer;
+  }
+  .fa-location-arrow {
+  	color: #9e9e9e;
   }
 }
 @media only screen and (min-device-width: 768px) {
 	.header-nav {
 		margin-left: 10px;
-	}
-}
-@media only screen and (min-device-width: 1025px) {
-	.menu-slide-left {
-		width: 100%;
 	}
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
@@ -93,18 +110,24 @@ body.has-active-menu {
 	.header-nav {
 		width: 95%;
 	}
-	.menu-slide-left {
-		width: 80%;
-	}
-}
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-	.menu-slide-left {
-		width: 55%;
-	}
 }
 /**
  * Menu overview.
  */
+#close {
+	height: 90px;
+	display: inline-block;
+	width: 100%;
+	cursor: pointer;
+}
+
+#close h3 {
+	float: left;
+	margin-top: 35px;
+	margin-right: 50px;
+	margin-left: 10px;
+}
+
 .menu {
   position: fixed;
   z-index: 200;
@@ -134,33 +157,68 @@ body.has-active-menu {
   opacity: 0.7;
   transition: opacity 0.3s;
 }
-.menu-slide-left {
-  overflow-y: scroll;
+.menu-slide-left, .menu-push-left {
+	font-size: 1.2em;
+  overflow-y: auto;
   height: 100%;
   top: 0;
   left: 0;
   transform: translateX(-100%);
+  -webkit-box-shadow: 2px 0px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 2px 0px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 2px 0px 3px 0px rgba(0,0,0,0.2);
 }
-.menu-slide-left .menu-item {
+
+.menu-slide-left img, .menu-push-left img {
+	float: left;
+	width: 15%;
+	margin-left: 20px;
+	margin-top: 15px;
+}
+.menu-slide-left .menu-item, .menu-push-left .menu-item {
   display: block;
   text-align: center;
-  border-top: solid 1px #b5dbe9;
-  border-bottom: solid 1px #3184a1;
+  cursor: pointer;
 }
-.menu-slide-left .menu-item:first-child {
+
+.menu-slide-left .fa-caret-left, .menu-push-left .fa-caret-left {
+	color: #000;
+	float: right;
+	margin-top: 40px;
+	padding-right: 40px;
+}
+
+.menu-slide-left .menu-item h4, .menu-push-left .menu-item h4 {
+	display: block;
+	height: 60px;
+	font-weight: inherit;
+	padding-top: 35px;
+}
+
+.menu-slide-left .menu-item:hover, .menu-push-left .menu-item:hover {
+	background-color: #e5e5e5;
+}
+.menu-slide-left .menu-item:first-child, .menu-push-left .menu-item:first-child {
   border-top: none;
 }
 
-.menu-slide-left .menu-item:last-child {
+.menu-slide-left .menu-item:last-child, .menu-push-left .menu-item:last-child {
   border-bottom: none;
 }
-.menu-slide-left .menu-link {
+.menu-slide-left .menu-link, .menu-push-left .menu-link {
   padding: 12px 24px;
-  color: #fff;
+  color: #000;
 }
-.menu-slide-left.is-active {
+.menu-slide-left.is-active, .menu-push-left.is-active {
   transform: translateX(0);
 }
+
+/*#wrapper.has-push-left {
+  -webkit-transform: translateX(50%);
+      -ms-transform: translateX(50%);
+          transform: translateX(50%);
+}*/
+
 .menu-slide-bottom {
   vertical-align: middle;
   width: 100%;

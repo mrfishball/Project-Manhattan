@@ -63,6 +63,8 @@
     // Event for clicks on the mask.
     this.closeBtn.addEventListener('click', function(e) {
       e.preventDefault();
+      map.setCenter(center);
+      map.setZoom(12);
       this.close();
     }.bind(this));
   };
@@ -92,6 +94,7 @@
   Menu.prototype.disableMenuOpeners = function() {
     each(this.menuOpeners, function(item) {
       item.disabled = true;
+      item.style.pointerEvents = 'none';
     });
   };
   /**
@@ -100,6 +103,7 @@
   Menu.prototype.enableMenuOpeners = function() {
     each(this.menuOpeners, function(item) {
       item.disabled = false;
+      item.style.pointerEvents = 'auto';
     });
   };
 
@@ -109,7 +113,6 @@
   window.Menu = Menu;
 
 })(window);
-
 
 /**
  * Create new Menu objects.
@@ -121,9 +124,32 @@ var slideLeft = new Menu({
   // maskId: '#mask'
 });
 
+var pushLeft = new Menu({
+  wrapper: '#wrapper',
+  type: 'push-left',
+  menuOpenerClass: '.slider'
+  // maskId: '#c-mask'
+});
+  
+  // var pushLeftBtn = document.querySelector('#c-button--push-left');
+var searching = document.querySelector('#pac-input');
 var slideLeftBtn = document.querySelector('#hamburger-menu');
+var centerMe = document.querySelector('#my-location');
+
+centerMe.addEventListener('click', function(e) {
+  e.preventDefault;
+  map.setCenter(center);
+  map.setZoom(12);
+});
 
 slideLeftBtn.addEventListener('click', function(e) {
   e.preventDefault;
   slideLeft.open();
+  map.panBy(-200, 0);
+});
+
+searching.addEventListener('focus', function(e) {
+  e.preventDefault;
+  pushLeft.open();
+  // slideLeftBtn.style.pointerEvents = 'none';
 });

@@ -4,6 +4,7 @@
 	<head>
 		<title>A Simple Map</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i">
 		<link rel="stylesheet" href="static/css/style.css">
@@ -13,8 +14,8 @@
 			<header class="header">
 		    <nav class="header-nav">
 	     		<div id="hamburger-menu" class="slider"></div>
-	     		<input id="pac-input" class="controls" type="text" placeholder="Search Maps">
-	     		<div id="my-location"><a href="#"><i class="fa fa-location-arrow" aria-hidden="true"></i></a></div>
+	     		<input id="pac-input" class="controls" type="text" placeholder="Search Maps" data-bind="value: search, valueUpdate: 'keyup'" autocomplete="off">
+	     		<div id="my-location"><i class="fa fa-location-arrow" aria-hidden="true"></i></div>
 		    </nav>
 		  </header><!--header -->
 			<main class="content">
@@ -25,34 +26,46 @@
 		 </div><!-- wrapper -->
 
 		 <nav id="menu-slide-left" class="menu menu-slide-left">
-		  <ul class="menu-items">
-		  	<div id="close">CLOSE</div>
-		    <!-- <li class="menu-item"><a href="#" class="menu-link">Home</a></li>
-		    <li class="menu-item"><a href="#" class="menu-link">About</a></li>
-		    <li class="menu-item"><a href="#" class="menu-link">Services</a></li>
-		    <li class="menu-item"><a href="#" class="menu-link">Work</a></li>
-		    <li class="menu-item"><a href="#" class="menu-link">Contact</a></li> -->
+		 	<div id="close">
+		 		<img src="static/img/logo.svg">
+		 		<h3>Project Manhattan</h3>
+		 		<i class="fa fa-caret-left" aria-hidden="true"></i>
+		 	</div>
+		  <ul class="menu-items" data-bind="foreach: places">
+		    <li class="menu-item" data-bind="event: { mouseover: open, mouseout: close, click: focus }">
+		    	<h4 data-bind="text: name"></h4>
+<!-- 		    	<h5 data-bind="text: description"></h5> -->
+		    </li>
 		  </ul>
 		</nav><!--Menu slide from left-->
+
+		<nav id="menu-push-left" class="menu menu-push-left">
+		 	<div id="close">
+		 		<img src="static/img/logo.svg">
+		 		<h3>Project Manhattan</h3>
+		 		<i class="fa fa-caret-left" aria-hidden="true"></i>
+		 	</div>
+		 	<ul class="menu-items" data-bind="foreach: searchResult">
+		    <li class="menu-item" data-bind="event: { mouseover: open, mouseout: close, click: focus }">
+		    	<h4 data-bind="text: name"></h4>
+<!-- 		    	<h5 data-bind="text: description"></h5> -->
+		    </li>
+		  </ul>
+		</nav><!--Menu push from left-->
 
 		<nav id="menu-slide-bottom" class="menu menu-slide-bottom">
 		  <ul class="menu-items">
 		  	<div id="close">CLOSE</div>
-<!-- 		    <li class="menu-item"><a href="#" class="menu-link">Home</a></li>
-		    <li class="menu-item"><a href="#" class="menu-link">About</a></li>
-		    <li class="menu-item"><a href="#" class="menu-link">Services</a></li> -->
 		  </ul>
 		</nav><!-- Menu slide from bottom -->
 		
 <!-- 		<div id="mask" class="mask"></div> mask -->
+		<script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoVzrmlxfvUBwId_KoqAF5PBnaHNDOEHU&libraries=places&callback=initMap"></script>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		<script type="text/javascript" src="static/js/knockout-3.4.0.js"></script>
-		<script type="text/javascript" src="static/js/app.js"></script>
-		<script type="text/javascript" src="https://use.fontawesome.com/e77a3a669b.js"></script>
-		<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoVzrmlxfvUBwId_KoqAF5PBnaHNDOEHU&libraries=places">
-    </script>
-    <script type="text/javascript" src="static/js/map.js"></script>
 		<script type="text/javascript" src="static/js/menu.js"></script>
+    <script type="text/javascript" src="static/js/app.js"></script>
+		<script type="text/javascript" src="https://use.fontawesome.com/e77a3a669b.js"></script>
+
 	</body>
 </html>

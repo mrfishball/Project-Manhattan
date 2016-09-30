@@ -31,7 +31,7 @@ function initMap() {
   map = new google.maps.Map(mapDiv, {
     zoom: 12,
     center: center,
-    disableDefaultUI: false,
+    disableDefaultUI: true,
     draggable: true,
     styles: [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}]
   });
@@ -61,18 +61,17 @@ var Point = function(place) {
 	self.pos = place.pos;
 	self.type = place.type;
 	self.description = place.description;
-	self.marker = new google.maps.Marker({
-		map: map,
-		position: place.pos,
-		title: place.name,
-		icon: image,
-		optimized: false,
-		animation: google.maps.Animation.DROP
-	});
+	self.marker = null;
+
+	self.focusSearch = function() {
+		self.open();
+		map.setCenter(self.marker.position);
+		map.setZoom(16);
+		map.panBy(170, 0);
+	}
 
 	self.focus = function() {
 		self.open();
-    slideLeft.open();
     map.setCenter(self.marker.position);
 		map.setZoom(16);
 		map.panBy(-200, 0);
@@ -89,31 +88,42 @@ var Point = function(place) {
 		self.marker.setAnimation(null);
 	}
 
-	self.marker.addListener("mouseover", function() {
-		self.open();
-	});
+	// self.marker.addListener("mouseover", function() {
+	// 	self.open();
+	// });
 
-	self.marker.addListener("mouseout", function() {
-		self.marker.setAnimation(null);
-	});
+	// self.marker.addListener("mouseout", function() {
+	// 	self.marker.setAnimation(null);
+	// });
 
-	self.marker.addListener("click", function() {
-		self.focus();
-	});
+	// self.marker.addListener("click", function() {
+	// 	self.focus();
+	// });
 }
 
 var ViewModel = function(list) {
 	var self = this;
-	self.places = ko.observableArray(list.map(function(place) {
+	self.allPlaces = ko.observableArray(list.map(function(place) {
 		return new Point(place);
+	}));
+	self.visiblePlaces = ko.observableArray(self.allPlaces().map(function(place) {
+		var markerOptions = {
+			map: map,
+			position: place.pos,
+			title: place.name,
+			icon: image,
+			optimized: false,
+			animation: google.maps.Animation.DROP
+		}
+		place.marker = new google.maps.Marker(markerOptions);
+		return place;
 	}));
 	self.name = ko.observable();
 	self.search = ko.observable("");
 	self.searchResult = ko.pureComputed(function() {
 		var q = self.search();
-		var target = self.places();
-		return target.filter(function(item) {
-			return (item.name.toLowerCase().indexOf(q) >= 0);
+		return self.allPlaces().filter(function(place) {
+			return ((place.name.toLowerCase().indexOf(q) >= 0) || (place.description.toLowerCase().indexOf(q) >= 0) || (place.type.toLowerCase().indexOf(q) >= 0));
 		});
 	});
 }

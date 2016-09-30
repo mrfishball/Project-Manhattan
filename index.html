@@ -13,9 +13,9 @@
 		<div id="wrapper">
 			<header class="header">
 		    <nav class="header-nav">
-	     		<div id="hamburger-menu" class="slider"></div>
+	     		<div id="hamburger-menu" class="slider disabler"></div>
 	     		<input id="pac-input" class="controls" type="text" placeholder="Search Maps" data-bind="value: search, valueUpdate: 'keyup'" autocomplete="off">
-	     		<div id="my-location"><i class="fa fa-location-arrow" aria-hidden="true"></i></div>
+	     		<div id="my-location" class="slider"><i class="fa fa-location-arrow slider" aria-hidden="true"></i></div>
 		    </nav>
 		  </header><!--header -->
 			<main class="content">
@@ -31,7 +31,7 @@
 		 		<h3>Project Manhattan</h3>
 		 		<i class="fa fa-caret-left" aria-hidden="true"></i>
 		 	</div>
-		  <ul class="menu-items" data-bind="foreach: places">
+		  <ul class="menu-items" data-bind="foreach: allPlaces">
 		    <li class="menu-item" data-bind="event: { mouseover: open, mouseout: close, click: focus }">
 		    	<h4 data-bind="text: name"></h4>
 <!-- 		    	<h5 data-bind="text: description"></h5> -->
@@ -46,9 +46,14 @@
 		 		<i class="fa fa-caret-left" aria-hidden="true"></i>
 		 	</div>
 		 	<ul class="menu-items" data-bind="foreach: searchResult">
-		    <li class="menu-item" data-bind="event: { mouseover: open, mouseout: close, click: focus }">
+		    <li class="menu-item" data-bind="event: { mouseover: open, mouseout: close, click: focusSearch }">
 		    	<h4 data-bind="text: name"></h4>
 <!-- 		    	<h5 data-bind="text: description"></h5> -->
+		    </li>
+		  </ul>
+		  <ul class="menu-items" data-bind="visible: searchResult() == 0">
+		  	<li class="menu-item">
+		    	<h4>We can't find what you're looking for :(</h4>
 		    </li>
 		  </ul>
 		</nav><!--Menu push from left-->

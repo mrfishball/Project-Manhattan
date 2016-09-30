@@ -94,7 +94,11 @@
   Menu.prototype.disableMenuOpeners = function() {
     each(this.menuOpeners, function(item) {
       item.disabled = true;
+      /**
+       * Disable the left menu from sliding in.
+      */
       item.style.pointerEvents = 'none';
+      item.style.color = '#9e9e9e';
     });
   };
   /**
@@ -103,7 +107,11 @@
   Menu.prototype.enableMenuOpeners = function() {
     each(this.menuOpeners, function(item) {
       item.disabled = false;
+      /**
+       * Enable the sliding left menu.
+      */
       item.style.pointerEvents = 'auto';
+      item.style.color = '#000';
     });
   };
 
@@ -130,11 +138,11 @@ var pushLeft = new Menu({
   menuOpenerClass: '.slider'
   // maskId: '#c-mask'
 });
-  
-  // var pushLeftBtn = document.querySelector('#c-button--push-left');
+
 var searching = document.querySelector('#pac-input');
 var slideLeftBtn = document.querySelector('#hamburger-menu');
 var centerMe = document.querySelector('#my-location');
+var gpsLogo = document.querySelector('.fa-location-arrow');
 
 centerMe.addEventListener('click', function(e) {
   e.preventDefault;
@@ -151,5 +159,9 @@ slideLeftBtn.addEventListener('click', function(e) {
 searching.addEventListener('focus', function(e) {
   e.preventDefault;
   pushLeft.open();
-  // slideLeftBtn.style.pointerEvents = 'none';
+  map.setCenter(center);
+  map.setZoom(12);
+  map.panBy(150, 0);
+  // centerMe.style.pointerEvents = 'none';
+  // gpsLogo.style.color = '#9e9e9e';
 });

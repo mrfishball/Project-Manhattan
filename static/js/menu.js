@@ -132,11 +132,18 @@ var slideLeft = new Menu({
   // maskId: '#mask'
 });
 
+var slideBottom = new Menu({
+  wrapper: '#wrapper',
+  type: 'slide-bottom',
+  menuOpenerClass: '.slider'
+  // maskId: '#mask'
+});
+
 var pushLeft = new Menu({
   wrapper: '#wrapper',
   type: 'push-left',
   menuOpenerClass: '.slider'
-  // maskId: '#c-mask'
+  // maskId: '#mask'
 });
 
 var searching = document.querySelector('#pac-input');
@@ -158,10 +165,9 @@ slideLeftBtn.addEventListener('click', function(e) {
 
 searching.addEventListener('focus', function(e) {
   e.preventDefault;
+  slideBottom.close();
   pushLeft.open();
   map.setCenter(center);
   map.setZoom(12);
   map.panBy(150, 0);
-  // centerMe.style.pointerEvents = 'none';
-  // gpsLogo.style.color = '#9e9e9e';
 });

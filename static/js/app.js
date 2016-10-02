@@ -4,6 +4,7 @@ var map;
 var center = {lat: 40.7484, lng: -73.9857};
 var image;
 var infowindow;
+
 var collection = [
 	{name: "Empire State Building", pos: {lat: 40.74843, lng: -73.98566}, type: "Attraction", description: "Iconic, art deco office tower from 1931 with exhibits & observatories on the 86th & 102nd floors."},
 	{name: "Shack Shake", pos: {lat: 40.74152, lng: -73.98816}, type: "Dining", description: "Hip, counter-serve chain for gourmet takes on fast-food classics like burgers & frozen custard."},
@@ -33,21 +34,28 @@ function initMap() {
     center: center,
     disableDefaultUI: true,
     draggable: true,
+    /**
+			Custom map styles.
+  	*/
     styles: [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}]
   });
-
+  /**
+		Instantiate the infowindow object for later use.
+  */
   infowindow = new google.maps.InfoWindow({
   	maxWidth: 250
   });
-	
+	/**
+		Custom marker image and size.
+  */
 	image = {
     url: "static/img/dp_marker2.png",
     origin: new google.maps.Point(0, 0),
   	anchor: new google.maps.Point(23, 48),
   	scaledSize: new google.maps.Size(40, 48)
   };
-  /*
-	Check if map is loaded before creating the viewmodel
+  /**
+		Check if map is loaded before creating the viewmodel
   */
   google.maps.event.addListenerOnce(map, "idle", function() {
 	  var viewModel = new ViewModel(collection);
@@ -61,69 +69,122 @@ var Point = function(place) {
 	self.pos = place.pos;
 	self.type = place.type;
 	self.description = place.description;
-	self.marker = null;
+	self.clicked = map.getZoom();
+	/**
+		Create a marker for this destination.
+  */
+	self.marker = new google.maps.Marker({
+		map: map,
+		position: place.pos,
+		title: place.name,
+		icon: image,
+		optimized: false,
+		animation: google.maps.Animation.DROP
+	});
 
+	self.isVisible = ko.observable(false);
+	/**
+		Toggle for the visibility of each marker on map.
+  */
+  self.isVisible.subscribe(function(currentState) {
+    if (currentState) {
+      self.marker.setMap(map);
+    } else {
+      self.marker.setMap(null);
+    }
+  });
+
+  self.isVisible(true);
+
+  /**
+		To re position the target marker and the map view to compensate for the shifted map view panel when the search menu pushes in from the left when the location is being clicked on the menu.
+  */
 	self.focusSearch = function() {
-		self.open();
+		map.setZoom(16);
 		map.setCenter(self.marker.position);
-		map.setZoom(16);
-		map.panBy(170, 0);
-	}
-
-	self.focus = function() {
+		map.panBy(200,0);
 		self.open();
-    map.setCenter(self.marker.position);
-		map.setZoom(16);
-		map.panBy(-200, 0);
 	}
+	/**
+		To re position the target marker and the map view to compensate for the shifted map view panel when the menu slides in from the left when the location is being clicked on the menu.
+  */
+	self.focus = function() {
+		map.setZoom(16);
+		map.setCenter(self.marker.position);
+		map.panBy(-200, 0);
+		self.open();
+	}
+	/**
+		Display the name and a brief description of the location in a infowindow for the corresponding marker. Also checks if the map view, in this case the zoom level has changed, if so then change the map view and re center it to the marker of the loaction that is selected. Applies to only when the regular menu is active.
+	*/
 	self.open = function() {
 		var contentString = "<h2>" + place.name + "</h2><br>";
 		infowindow.setContent(contentString + place.description);
 		infowindow.open(map, self.marker);
-    self.marker.setAnimation(google.maps.Animation.BOUNCE);
 	}
-
+	/**
+		Dismiss the infowindow.
+	*/
 	self.close = function() {
 		infowindow.close();
 		self.marker.setAnimation(null);
 	}
+	/**
+		Additional event listeners for the marker.
+	*/
+	self.marker.addListener("mouseover", function() {
+		self.open();
+		self.marker.setAnimation(google.maps.Animation.BOUNCE);
+	});
 
-	// self.marker.addListener("mouseover", function() {
-	// 	self.open();
-	// });
+	self.marker.addListener("mouseout", function() {
+		self.marker.setAnimation(null);
+	});
 
-	// self.marker.addListener("mouseout", function() {
-	// 	self.marker.setAnimation(null);
-	// });
-
-	// self.marker.addListener("click", function() {
-	// 	self.focus();
-	// });
+	self.marker.addListener("click", function() {
+		map.setZoom(16);
+		map.setCenter(self.marker.position);
+		pushLeft.close();
+		slideLeft.close();
+		slideBottom.open();
+		self.open();
+	});
 }
-
+/**
+		This is our ViewModel that handles displaying a menu of destinations, filter/search through the menu and finally displaying markers of these destinations on the map.
+*/
 var ViewModel = function(list) {
 	var self = this;
+	/**
+	 * Create a Place object for each object in the initial array and
+	 * place them in a new observable array.
+	*/
 	self.allPlaces = ko.observableArray(list.map(function(place) {
 		return new Point(place);
 	}));
-	self.visiblePlaces = ko.observableArray(self.allPlaces().map(function(place) {
-		var markerOptions = {
-			map: map,
-			position: place.pos,
-			title: place.name,
-			icon: image,
-			optimized: false,
-			animation: google.maps.Animation.DROP
-		}
-		place.marker = new google.maps.Marker(markerOptions);
-		return place;
-	}));
-	self.name = ko.observable();
+
 	self.search = ko.observable("");
+
+	/**
+	 * Filter locations out of the menu view for any unmatched results.
+	 * Filter by name, description and type.
+	*/
 	self.searchResult = ko.pureComputed(function() {
-		var q = self.search();
+		var q = self.search().toLowerCase();
 		return self.allPlaces().filter(function(place) {
 			return ((place.name.toLowerCase().indexOf(q) >= 0) || (place.description.toLowerCase().indexOf(q) >= 0) || (place.type.toLowerCase().indexOf(q) >= 0));
 		});
 	});
+	/**
+	 * Filter markers out of the map view for any unmatched results.
+	 * Filter by name, description and type.
+	*/
+	self.filterMarkers = ko.computed(function () {
+    var q  = self.search().toLowerCase();
+    return ko.utils.arrayFilter(self.allPlaces(), function (place) {
+        var doesMatch = ((place.name.toLowerCase().indexOf(q) >= 0) || (place.description.toLowerCase().indexOf(q) >= 0) || (place.type.toLowerCase().indexOf(q) >= 0));
+        place.isVisible(doesMatch);
+        return doesMatch;
+    });
+});
 }

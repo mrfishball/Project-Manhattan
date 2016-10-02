@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>A Simple Map</title>
+		<title>Project MANHATTAN</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
 			<header class="header">
 		    <nav class="header-nav">
 	     		<div id="hamburger-menu" class="slider disabler"></div>
-	     		<input id="pac-input" class="controls" type="text" placeholder="Search Maps" data-bind="value: search, valueUpdate: 'keyup'" autocomplete="off">
+	     		<input id="pac-input" class="controls" type="text" placeholder="Search..." data-bind="value: search, valueUpdate: 'keyup'" autocomplete="off">
 	     		<div id="my-location" class="slider"><i class="fa fa-location-arrow slider" aria-hidden="true"></i></div>
 		    </nav>
 		  </header><!--header -->
@@ -28,11 +28,11 @@
 		 <nav id="menu-slide-left" class="menu menu-slide-left">
 		 	<div id="close">
 		 		<img src="static/img/logo.svg">
-		 		<h3>Project Manhattan</h3>
+		 		<h3>Project MANHATTAN</h3>
 		 		<i class="fa fa-caret-left" aria-hidden="true"></i>
 		 	</div>
-		  <ul class="menu-items" data-bind="foreach: allPlaces">
-		    <li class="menu-item" data-bind="event: { mouseover: open, mouseout: close, click: focus }">
+		  <ul class="menu-items" data-bind="foreach: searchResult">
+		    <li class="menu-item" data-bind="event: { click: focus }">
 		    	<h4 data-bind="text: name"></h4>
 <!-- 		    	<h5 data-bind="text: description"></h5> -->
 		    </li>
@@ -42,11 +42,11 @@
 		<nav id="menu-push-left" class="menu menu-push-left">
 		 	<div id="close">
 		 		<img src="static/img/logo.svg">
-		 		<h3>Project Manhattan</h3>
+		 		<h3>Project MANHATTAN</h3>
 		 		<i class="fa fa-caret-left" aria-hidden="true"></i>
 		 	</div>
 		 	<ul class="menu-items" data-bind="foreach: searchResult">
-		    <li class="menu-item" data-bind="event: { mouseover: open, mouseout: close, click: focusSearch }">
+		    <li class="menu-item" data-bind="event: { click: focusSearch }">
 		    	<h4 data-bind="text: name"></h4>
 <!-- 		    	<h5 data-bind="text: description"></h5> -->
 		    </li>
@@ -59,8 +59,9 @@
 		</nav><!--Menu push from left-->
 
 		<nav id="menu-slide-bottom" class="menu menu-slide-bottom">
+			<div id="close">CLOSE</div>
 		  <ul class="menu-items">
-		  	<div id="close">CLOSE</div>
+		  	<h4 data-bind="text: name"></h4>
 		  </ul>
 		</nav><!-- Menu slide from bottom -->
 		

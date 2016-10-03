@@ -75,7 +75,9 @@
     this.body.classList.add('has-active-menu');
     this.wrapper.classList.add('has-' + this.options.type);
     this.menu.classList.add('is-active');
-    // this.mask.classList.add('is-active');
+    if (this.options.type == "slide-bottom") {
+      $("#mask").addClass('is-active');
+    }
     this.disableMenuOpeners();
   };
   /**
@@ -85,7 +87,10 @@
     this.body.classList.remove('has-active-menu');
     this.wrapper.classList.remove('has-' + this.options.type);
     this.menu.classList.remove('is-active');
-    // this.mask.classList.remove('is-active');
+    if (this.options.type == "slide-bottom") {
+      $("#mask").removeClass('is-active');
+      $("#fotorama").data("fotorama").destroy();
+    }
     this.enableMenuOpeners();
   };
   /**
@@ -150,6 +155,7 @@ var searching = document.querySelector('#pac-input');
 var slideLeftBtn = document.querySelector('#hamburger-menu');
 var centerMe = document.querySelector('#my-location');
 var gpsLogo = document.querySelector('.fa-location-arrow');
+var closeBottom = document.querySelector('#mask');
 
 centerMe.addEventListener('click', function(e) {
   e.preventDefault;
@@ -171,3 +177,9 @@ searching.addEventListener('focus', function(e) {
   map.setZoom(12);
   map.panBy(150, 0);
 });
+
+closeBottom.addEventListener('click', function(e) {
+  e.preventDefault;
+  slideBottom.close();
+})
+

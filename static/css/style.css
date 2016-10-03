@@ -103,6 +103,11 @@ body.has-active-menu {
 	.header-nav {
 		margin-left: 10px;
 	}
+  .fotorama-wrapper {
+		padding: 0;
+		margin: 0 auto;
+		width: 100vw;
+	}
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
 	.header {
@@ -116,6 +121,9 @@ body.has-active-menu {
 	.header-nav {
 		width: 95%;
 	}
+/*	.fotorama-wrapper {
+		width: 100vw;
+	}*/
 }
 /**
  * Menu overview.
@@ -242,6 +250,11 @@ body.has-active-menu {
 	box-shadow: 0px -2px 3px 0px rgba(0,0,0,0.2);
   transform: translateY(86vh);
 }
+
+.menu-slide-bottom #close {
+	display: none;
+}
+
 .menu-slide-bottom .menu-items{
   display: inline-block;
   text-align: center;

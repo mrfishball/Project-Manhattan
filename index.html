@@ -6,7 +6,9 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i">
+		<link  rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css">
 		<link rel="stylesheet" href="static/css/style.css">
 	</head>
 	<body>
@@ -59,27 +61,31 @@
 		</nav><!--Menu push from left-->
 
 		<nav id="menu-slide-bottom" class="menu menu-slide-bottom">
-			<div id="close">CLOSE</div>
+			<div id="close"></div>
+			<div class="fotorama-wrapper">
+				<div id="fotorama" class="fotorama" data-nav="thumbs" data-auto="false" data-width="100%" data-height="50%" data-fit="contain" data-allowfullscreen="true" style="background-color: #000;">
+				</div>
+			</div>
+
 		  <ul class="menu-items" data-bind="visible: !selected().error">
 		  	<h4 data-bind="text: selected().name"></h4>
 		  	<p data-bind="text: selected().contact"></p>
 		  	<p data-bind="text: selected().address"></p>
 		  	<p data-bind="text: selected().url"></p>
-
 		  </ul>
 		  <ul class="menu-items" data-bind="visible: selected().error">
-		  	<h4 data-bind="text: selected().error"></h4>
+		  	<p data-bind="text: selected().error"></p>
 		  </ul>
 
 		</nav><!-- Menu slide from bottom -->
 		
-<!-- 		<div id="mask" class="mask"></div> mask -->
+		<div id="mask" class="mask"></div> mask
 		<script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoVzrmlxfvUBwId_KoqAF5PBnaHNDOEHU&libraries=places&callback=initMap"></script>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+				<script type="text/javascript" src="static/js/menu.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
 		<script type="text/javascript" src="static/js/knockout-3.4.0.js"></script>
-		<script type="text/javascript" src="static/js/menu.js"></script>
     <script type="text/javascript" src="static/js/app.js"></script>
 		<script type="text/javascript" src="https://use.fontawesome.com/e77a3a669b.js"></script>
-
 	</body>
 </html>

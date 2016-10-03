@@ -91,6 +91,7 @@ var Point = function(place) {
 	self.contact = null;
 	self.url = null;
 	self.id = null;
+	self.gallery = null;
 	self.isVisible = ko.observable(false);
 	/**
 	 * Create a marker for this destination.
@@ -126,16 +127,12 @@ var Point = function(place) {
   self.getInfo = function(callback) {
   	var requestAPI = "https://api.foursquare.com/v2/venues/search?client_id="+client_id+"&client_secret="+secret+"&v=20161002"+"&ll="+place.pos.lat+","+place.pos.lng+"&query="+ place.name +"&limit=1";
 
-  	$.getJSON(requestAPI).done(function(response) {
-
-  			console.log(response.response.venues[0].id);
-  			
+  	$.getJSON(requestAPI).done(function(response) {  			
   			self.id = response.response.venues[0].id;
   			self.address = response.response.venues[0].location.formattedAddress;
   			self.contact = response.response.venues[0].contact.formattedPhone;
   			self.url = response.response.venues[0].url;
 
-  			localStorage.setItem(place.name, response.response.venues[0]);
   			callback(self.id);
 
   	}).fail(function() {
@@ -151,13 +148,14 @@ var Point = function(place) {
   	var requestAPI = "https://api.foursquare.com/v2/venues/"+venueID+"/photos?client_id="+client_id+"&client_secret="+secret+"&v=20161002";
 
   	$.getJSON(requestAPI).done(function(response) {
-  			console.log(response.response);
-
+  			self.gallery = (response.response.photos.items.map(function(photo) {
+  				return {"img": (photo.prefix + photo.height + "x" + photo.width + photo.suffix)};
+  			}));
   	}).fail(function() {
   			self.error = "Oops! Something is wrong :("
   		});
   }
-  
+
   self.getInfo(self.getPhotos);
   /**
    * To re position the target marker and the map view to compensate 
@@ -218,6 +216,7 @@ var Point = function(place) {
 		 * Update the selected to the current Point object.
 		*/
 		viewModel.selected(self);
+		$("#fotorama").fotorama({data :self.gallery});
 		// map.setZoom(16);
 		// map.setCenter(self.marker.position);
 		pushLeft.close();
@@ -247,6 +246,8 @@ var ViewModel = function(list) {
 	*/
 	self.selected = ko.observable(self.allPlaces()[0]);
 	self.search = ko.observable("");
+
+	self.foto = ko.observable();
 	/**
 	 * Filter locations out of the menu view for any unmatched results.
 	 * Filter by name, description and type.

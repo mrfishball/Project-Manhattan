@@ -5,6 +5,9 @@ var center = {lat: 40.7484, lng: -73.9857};
 var image;
 var infowindow;
 var viewModel;
+var client_id = "OCNGIDK3KNDHPSZS50KTNCNR3CHPHV0EX01AYV0RLDQXHNL2";
+var secret = "WMH4A3QF0XS5221ZAYKTNFHMIJYXUNMCPSPLZHFVHEWUGD4C";
+
 var collection = [
 	{name: "Empire State Building", pos: {lat: 40.74843, lng: -73.98566}, type: "Attraction", description: "Iconic, art deco office tower from 1931 with exhibits & observatories on the 86th & 102nd floors."},
 	{name: "Shack Shake", pos: {lat: 40.74152, lng: -73.98816}, type: "Dining", description: "Hip, counter-serve chain for gourmet takes on fast-food classics like burgers & frozen custard."},
@@ -27,6 +30,20 @@ var collection = [
 	{name: "Statue of Liberty", pos: {lat: 40.68926, lng: -74.04454}, type: "Attraction", description: "Iconic National Monument opened in 1886, offering guided tours, a museum & city views."},
 	{name: "Rockefeller Center", pos: {lat: 40.75874, lng: -73.97870}, type: "Attraction", description: "Sights abound at this famous complex, home to an ice rink, TV studios & a giant Christmas tree."},
 ];
+
+/**
+ * Check if local storage feature is supposrted by the browser.
+*/
+// function isLocalStorage(){
+//     var test = 'test';
+//     try {
+//         localStorage.setItem(test, test);
+//         localStorage.removeItem(test);
+//         return true;
+//     } catch(e) {
+//         return false;
+//     }
+// }
 
 function initMap() {
   map = new google.maps.Map(mapDiv, {
@@ -58,7 +75,7 @@ function initMap() {
 	 * Check if map is loaded before creating the viewmodel
   */
   google.maps.event.addListenerOnce(map, "idle", function() {
-	  viewModel = new ViewModel(collection);
+		viewModel = new ViewModel(collection);
 		ko.applyBindings(viewModel);
   });
 }
@@ -69,7 +86,12 @@ var Point = function(place) {
 	self.pos = place.pos;
 	self.type = place.type;
 	self.description = place.description;
-	self.clicked = map.getZoom();
+	self.error = null;
+	self.address = null;
+	self.contact = null;
+	self.url = null;
+	self.id = null;
+	self.isVisible = ko.observable(false);
 	/**
 	 * Create a marker for this destination.
   */
@@ -82,7 +104,6 @@ var Point = function(place) {
 		animation: google.maps.Animation.DROP
 	});
 
-	self.isVisible = ko.observable(false);
 	/**
 	 * Toggle for the visibility of each marker on map.
   */
@@ -95,7 +116,49 @@ var Point = function(place) {
   });
 
   self.isVisible(true);
+  
+  /**
+   * Fetch location info such as venue ID, address, contact etc using
+   * Foursquare's Search Venue API. 
+   * Callback to getPhotos function to fetch pictures of the  
+   * location as venue ID from the first fetch is required.
+  */
+  self.getInfo = function(callback) {
+  	var requestAPI = "https://api.foursquare.com/v2/venues/search?client_id="+client_id+"&client_secret="+secret+"&v=20161002"+"&ll="+place.pos.lat+","+place.pos.lng+"&query="+ place.name +"&limit=1";
 
+  	$.getJSON(requestAPI).done(function(response) {
+
+  			console.log(response.response.venues[0].id);
+  			
+  			self.id = response.response.venues[0].id;
+  			self.address = response.response.venues[0].location.formattedAddress;
+  			self.contact = response.response.venues[0].contact.formattedPhone;
+  			self.url = response.response.venues[0].url;
+
+  			localStorage.setItem(place.name, response.response.venues[0]);
+  			callback(self.id);
+
+  	}).fail(function() {
+  			self.error = "Oops! Something is wrong :("
+  		});
+  }
+
+  /**
+   * Fetch photos of the location using the venue ID provided by 
+   * getInfo.
+  */
+  self.getPhotos = function(venueID) {
+  	var requestAPI = "https://api.foursquare.com/v2/venues/"+venueID+"/photos?client_id="+client_id+"&client_secret="+secret+"&v=20161002";
+
+  	$.getJSON(requestAPI).done(function(response) {
+  			console.log(response.response);
+
+  	}).fail(function() {
+  			self.error = "Oops! Something is wrong :("
+  		});
+  }
+  
+  self.getInfo(self.getPhotos);
   /**
    * To re position the target marker and the map view to compensate 
    * for the shifted map view panel when the search menu pushes in 
@@ -155,8 +218,8 @@ var Point = function(place) {
 		 * Update the selected to the current Point object.
 		*/
 		viewModel.selected(self);
-		map.setZoom(16);
-		map.setCenter(self.marker.position);
+		// map.setZoom(16);
+		// map.setCenter(self.marker.position);
 		pushLeft.close();
 		slideLeft.close();
 		slideBottom.open();

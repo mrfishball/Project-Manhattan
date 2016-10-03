@@ -60,9 +60,17 @@
 
 		<nav id="menu-slide-bottom" class="menu menu-slide-bottom">
 			<div id="close">CLOSE</div>
-		  <ul class="menu-items">
+		  <ul class="menu-items" data-bind="visible: !selected().error">
 		  	<h4 data-bind="text: selected().name"></h4>
+		  	<p data-bind="text: selected().contact"></p>
+		  	<p data-bind="text: selected().address"></p>
+		  	<p data-bind="text: selected().url"></p>
+
 		  </ul>
+		  <ul class="menu-items" data-bind="visible: selected().error">
+		  	<h4 data-bind="text: selected().error"></h4>
+		  </ul>
+
 		</nav><!-- Menu slide from bottom -->
 		
 <!-- 		<div id="mask" class="mask"></div> mask -->

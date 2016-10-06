@@ -121,9 +121,9 @@ body.has-active-menu {
 	.header-nav {
 		width: 95%;
 	}
-/*	.fotorama-wrapper {
+	.fotorama-wrapper {
 		width: 100vw;
-	}*/
+	}
 }
 /**
  * Menu overview.
@@ -253,6 +253,10 @@ body.has-active-menu {
 
 .menu-slide-bottom #close {
 	display: none;
+}
+
+#fotorama {
+	background-color: #000;
 }
 
 .menu-slide-bottom .menu-items{

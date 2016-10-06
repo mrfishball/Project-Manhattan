@@ -49,7 +49,7 @@ function initMap() {
   map = new google.maps.Map(mapDiv, {
     zoom: 12,
     center: center,
-    disableDefaultUI: true,
+    disableDefaultUI: false,
     draggable: true,
     /**
 		 * Custom map styles.
@@ -246,8 +246,6 @@ var ViewModel = function(list) {
 	*/
 	self.selected = ko.observable(self.allPlaces()[0]);
 	self.search = ko.observable("");
-
-	self.foto = ko.observable();
 	/**
 	 * Filter locations out of the menu view for any unmatched results.
 	 * Filter by name, description and type.

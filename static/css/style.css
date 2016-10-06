@@ -6,6 +6,7 @@ body, html {
   font-family: 'Roboto Condensed', sans-serif, Helvetica, Arial;
   font-size: 1em;
   height: 100%;
+  overflow: hidden;
 }
 body.has-active-menu {
   overflow: hidden;
@@ -103,11 +104,6 @@ body.has-active-menu {
 	.header-nav {
 		margin-left: 10px;
 	}
-  .fotorama-wrapper {
-		padding: 0;
-		margin: 0 auto;
-		width: 100vw;
-	}
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
 	.header {
@@ -120,9 +116,6 @@ body.has-active-menu {
 	}
 	.header-nav {
 		width: 95%;
-	}
-	.fotorama-wrapper {
-		width: 100vw;
 	}
 }
 /**
@@ -253,6 +246,12 @@ body.has-active-menu {
 
 .menu-slide-bottom #close {
 	display: none;
+}
+
+.fotorama-wrapper {
+	padding: 0;
+	margin: 0 auto;
+	width: 100vw;
 }
 
 #fotorama {

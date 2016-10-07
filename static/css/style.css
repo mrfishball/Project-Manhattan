@@ -6,9 +6,8 @@ body, html {
   font-family: 'Roboto Condensed', sans-serif, Helvetica, Arial;
   font-size: 1em;
   min-width: 100%;
-/*  width: 100%;*/
-/*  overflow: hidden;*/
 }
+
 body.has-active-menu {
   overflow: hidden;
 }
@@ -24,11 +23,11 @@ body.has-active-menu {
     background: #fff; 
 }
 #wrapper {
+/*	border: 2px solid red;*/
 	-webkit-transition: -webkit-transform 0.1s;
   transition: transform 0.1s;
 }
 #map {
-	overflow: hidden;
 	position: absolute;
 	min-width: 100vw;
 	min-height: 100vh;
@@ -39,6 +38,23 @@ body.has-active-menu {
       -ms-transform: translateX(30vw);
           transform: translateX(30vw);
   }
+	.header-nav {
+		z-index: 200;
+		background-color: #fff;
+		position: absolute;
+/*		display: -webkit-box;
+	  display: -moz-box;*/
+	  display: -ms-flexbox;
+	  display: -webkit-flex;
+	  display: flex;
+	  align-items: center;
+	  margin-top: 10px;
+	  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02);
+		-moz-box-shadow: 0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02);
+	  box-shadow: 0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02);
+	  height: 50px;
+	  width: 320px;
+	}
 	input {
 		border: none;
 	}
@@ -88,12 +104,12 @@ body.has-active-menu {
   }
 }
 @media only screen and (min-device-width: 768px) {
+	.header-nav {
+		margin-left: 10px;
+	}
 	.menu-slide-bottom {
 		width: 90vw;
 		left: 5vw;
-	}
-	.header-nav {
-		width: 320px;
 	}
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
@@ -105,23 +121,6 @@ body.has-active-menu {
 	  display: flex;
 	  justify-content: center;
 	  min-width: 100%;
-	}
-	.header-nav {
-		z-index: 100;
-		background-color: #fff;
-		position: absolute;
-/*		display: -webkit-box;
-	  display: -moz-box;*/
-	  display: -ms-flexbox;
-	  display: -webkit-flex;
-	  display: flex;
-	  align-items: center;
-	  margin-top: 10px;
-	  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02);
-		-moz-box-shadow: 0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02);
-	  box-shadow: 0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02);
-	  height: 50px;
-	  width: 95%;
 	}
 	.header-nav {
 		width: 95%;

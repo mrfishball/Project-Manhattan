@@ -24,6 +24,8 @@ body.has-active-menu {
     background: #fff; 
 }
 #wrapper {
+	min-width: 100vw;
+	overflow: hidden;
 	-webkit-transition: -webkit-transform 0.1s;
   transition: transform 0.1s;
 }

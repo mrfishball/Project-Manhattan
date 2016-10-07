@@ -120,7 +120,7 @@ body.has-active-menu {
 	  display: -webkit-flex;
 	  display: flex;
 	  justify-content: center;
-	  width: 100vw;
+	  min-width: 100%;
 	}
 	.header-nav {
 		width: 95%;

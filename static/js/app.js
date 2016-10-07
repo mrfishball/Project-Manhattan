@@ -50,6 +50,7 @@ function initMap() {
     zoom: 12,
     center: center,
     disableDefaultUI: false,
+    mapTypeControl: true,
     draggable: true,
     /**
 		 * Custom map styles.

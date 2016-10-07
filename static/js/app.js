@@ -49,7 +49,7 @@ function initMap() {
   map = new google.maps.Map(mapDiv, {
     zoom: 12,
     center: center,
-    disableDefaultUI: false,
+    // disableDefaultUI: false,
     mapTypeControl: false,
     draggable: true,
     /**

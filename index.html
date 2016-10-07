@@ -67,11 +67,22 @@
 				</div>
 			</div>
 
+
+
 		  <ul class="menu-items" data-bind="visible: !selected().error">
-		  	<h4 data-bind="text: selected().name"></h4>
+			<!-- Cards-->
+				<div class="card card--big">
+				  <h2 class="card__title" data-bind="text: selected().name"></h2>
+				  <p class="card__text" data-bind="text: selected().address"></p>
+				  <div class="card__action-bar">
+				    <span class="card__subtitle"><p data-bind="text: selected().contact"></p></span>
+				    <span class="card__subtitle"><p data-bind="text: selected().url"></p></span>
+				  </div>
+				</div>
+		  	<!-- <h4 data-bind="text: selected().name"></h4>
 		  	<p data-bind="text: selected().contact"></p>
 		  	<p data-bind="text: selected().address"></p>
-		  	<p data-bind="text: selected().url"></p>
+		  	<p data-bind="text: selected().url"></p> -->
 		  </ul>
 		  <ul class="menu-items" data-bind="visible: selected().error">
 		  	<p data-bind="text: selected().error"></p>

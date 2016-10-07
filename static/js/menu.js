@@ -87,6 +87,7 @@
     this.body.classList.remove('has-active-menu');
     this.wrapper.classList.remove('has-' + this.options.type);
     this.menu.classList.remove('is-active');
+    // console.log(this.options.type);
     if (this.options.type == "slide-bottom") {
       $("#mask").removeClass('is-active');
       $("#fotorama").data("fotorama").destroy();
@@ -171,7 +172,7 @@ slideLeftBtn.addEventListener('click', function(e) {
 
 searching.addEventListener('focus', function(e) {
   e.preventDefault;
-  slideBottom.close();
+  slideLeft.close();
   pushLeft.open();
   map.setCenter(center);
   map.setZoom(12);

@@ -133,6 +133,8 @@ var Point = function(place) {
   			self.contact = response.response.venues[0].contact.formattedPhone;
   			self.url = response.response.venues[0].url;
 
+  			// console.log(response.response.venues[0]);
+
   			callback(self.id);
 
   	}).fail(function() {

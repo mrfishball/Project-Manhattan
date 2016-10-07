@@ -5,7 +5,7 @@
 body, html {
   font-family: 'Roboto Condensed', sans-serif, Helvetica, Arial;
   font-size: 1em;
-  min-width: 980px;
+  min-width: 100%;
 /*  width: 100%;*/
 /*  overflow: hidden;*/
 }
@@ -26,16 +26,12 @@ body.has-active-menu {
 #wrapper {
 	-webkit-transition: -webkit-transform 0.1s;
   transition: transform 0.1s;
-
 }
 #map {
-	min-width: 980px;
-	height: 100%;
-	width: 100%;
-	height: 100vh;
-	width: 100vw;
+	min-width: 100vw;
+	min-height: 100vh;
 }
-@media all and (min-width: 320px) {
+@media only screen and (min-device-width: 320px) {
 	#wrapper.has-push-left {
   -webkit-transform: translateX(30vw);
       -ms-transform: translateX(30vw);
@@ -95,6 +91,7 @@ body.has-active-menu {
 	.menu-push-left,
   .menu-slide-left {
     width: 30vw;
+    -webkit-overflow-scrolling: touch;
   }
   #my-location {
   	position: absolute;
@@ -116,8 +113,8 @@ body.has-active-menu {
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
 	.header {
-		display: -webkit-box;
-	  display: -moz-box;
+/*		display: -webkit-box;
+	  display: -moz-box;*/
 	  display: -ms-flexbox;
 	  display: -webkit-flex;
 	  display: flex;

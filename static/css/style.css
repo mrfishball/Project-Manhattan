@@ -28,6 +28,7 @@ body.has-active-menu {
   transition: transform 0.1s;
 }
 #map {
+	position: absolute;
 	min-width: 100vw;
 	min-height: 100vh;
 }
@@ -37,14 +38,6 @@ body.has-active-menu {
       -ms-transform: translateX(30vw);
           transform: translateX(30vw);
   }
-  .header {
-/*		display: -webkit-box;
-	  display: -moz-box;*/
-	  display: -ms-flexbox;
-	  display: -webkit-flex;
-	  display: flex;
-	  justify-content: center;
-	}
 	.header-nav {
 		z-index: 100;
 		background-color: #fff;
@@ -120,6 +113,14 @@ body.has-active-menu {
 	}
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
+	.header {
+/*		display: -webkit-box;
+	  display: -moz-box;*/
+	  display: -ms-flexbox;
+	  display: -webkit-flex;
+	  display: flex;
+	  justify-content: center;
+	}
 	.header-nav {
 		width: 95%;
 	}

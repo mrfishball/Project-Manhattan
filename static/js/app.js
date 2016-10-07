@@ -102,7 +102,7 @@ var Point = function(place) {
 		position: place.pos,
 		title: place.name,
 		icon: image,
-		optimized: false,
+		optimized: true,
 		animation: google.maps.Animation.DROP
 	});
 

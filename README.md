@@ -3,6 +3,7 @@ Project Manhattan
 Explore the city that never sleeps.
 
 LOCAL RUN:
+
 	-Prerequisites:
 		Any modern browser.
 

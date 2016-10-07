@@ -39,7 +39,7 @@ body.has-active-menu {
           transform: translateX(30vw);
   }
 	.header-nav {
-		z-index: 200;
+		z-index: 50;
 		background-color: #fff;
 		position: absolute;
 /*		display: -webkit-box;
@@ -263,7 +263,7 @@ body.has-active-menu {
 }
 
 .fotorama-wrapper {
-	padding: 0;
+	padding: 0;
 	margin: 0 auto;
 	width: 100%;
 }

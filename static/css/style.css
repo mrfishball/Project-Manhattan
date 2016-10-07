@@ -24,12 +24,13 @@ body.has-active-menu {
     background: #fff; 
 }
 #wrapper {
-	min-width: 100vw;
-	overflow: hidden;
+	top: 0;
+	left: 0;
 	-webkit-transition: -webkit-transform 0.1s;
   transition: transform 0.1s;
 }
 #map {
+	overflow: hidden;
 	position: absolute;
 	min-width: 100vw;
 	min-height: 100vh;

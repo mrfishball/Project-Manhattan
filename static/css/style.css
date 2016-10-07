@@ -29,6 +29,7 @@ body.has-active-menu {
 }
 #map {
 	height: 100vh;
+	width: 100vw;
 }
 @media all and (min-width: 320px) {
 	#wrapper.has-push-left {
@@ -40,8 +41,8 @@ body.has-active-menu {
 		z-index: 100;
 		background-color: #fff;
 		position: absolute;
-		display: -webkit-box;
-	  display: -moz-box;
+/*		display: -webkit-box;
+	  display: -moz-box;*/
 	  display: -ms-flexbox;
 	  display: -webkit-flex;
 	  display: flex;

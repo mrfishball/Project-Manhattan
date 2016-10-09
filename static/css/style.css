@@ -33,13 +33,26 @@ body.has-active-menu {
 	min-width: 100vw;
 	min-height: 100vh;
 }
-@media only screen and (min-device-width: 320px) {
-	#wrapper.has-push-left {
+
+#wrapper.has-push-left {
   -webkit-transform: translateX(30vw);
       -ms-transform: translateX(30vw);
           transform: translateX(30vw);
-  }
-	.header-nav {
+}
+
+input {
+		border: none;
+}
+
+textarea:focus, input:focus {
+    outline: none;
+}
+
+input[type="text"] {
+	font-size: inherit;
+}
+
+.header-nav {
 		z-index: 50;
 		background-color: #fff;
 		position: absolute;
@@ -54,58 +67,55 @@ body.has-active-menu {
 	  height: 50px;
 	  width: 320px;
 	}
-	input {
-		border: none;
-	}
-	textarea:focus, input:focus {
-	    outline: none;
-	}
-	input[type="text"] {
-		font-size: inherit;
-	}
-	#hamburger-menu {
-		cursor: pointer;
-	  position: relative;
-		margin-top: -17px;
-		margin-left: 20px;
-		padding-left: 1.25em;
-	}
-	#hamburger-menu:before {
-	  content: "";
-	  position: absolute;
-	  top: 0.25em;
-	  left: 0;
-	  width: 1em;
-	  height: 0.125em;
-	}
-	.disabler:before {
-		border-bottom-color: #9e9e9e;
-		border-top-color: #9e9e9e;
-		border-top: 0.375em double;
-	  border-bottom: 0.125em solid;
-	}
-	#pac-input {
-		margin-left: 15px;
-		width: 100%;
-	}
 
-	.menu-push-left,
-  .menu-slide-left {
-    width: 30vw;
-    -webkit-overflow-scrolling: touch;
-  }
-  #my-location {
-  	position: relative;
-  	margin-right: 20px;
-  	cursor: pointer;
-  }
-  #my-location:before {
-  	position: absolute;
-  }
-  .fa-location-arrow {
-  	color: #000;
-  }
+#hamburger-menu {
+	cursor: pointer;
+  position: relative;
+	margin-top: -17px;
+	margin-left: 20px;
+	padding-left: 1.25em;
 }
+
+#hamburger-menu:before {
+  content: "";
+  position: absolute;
+  top: 0.25em;
+  left: 0;
+  width: 1em;
+  height: 0.125em;
+}
+
+.disabler:before {
+	border-bottom-color: #9e9e9e;
+	border-top-color: #9e9e9e;
+	border-top: 0.375em double;
+  border-bottom: 0.125em solid;
+}
+
+#pac-input {
+	margin-left: 15px;
+	width: 100%;
+}
+
+.menu-push-left,
+.menu-slide-left {
+
+}
+
+#my-location {
+	position: relative;
+	margin-right: 20px;
+	cursor: pointer;
+}
+
+#my-location:before {
+	position: absolute;
+}
+
+.fa-location-arrow {
+	color: #000;
+}
+
 @media only screen and (min-device-width: 768px) {
 	.header-nav {
 		margin-left: 10px;
@@ -129,7 +139,7 @@ body.has-active-menu {
 	.menu-slide-bottom {
 		width: 100vw;
 		left: 0;
-	}
+	}
 }
 /**
  * Menu overview.
@@ -179,6 +189,8 @@ body.has-active-menu {
 }
 .menu-slide-left,
 .menu-push-left {
+	width: 30vw;
+  -webkit-overflow-scrolling: touch;
 	font-size: 1.2em;
   overflow-y: auto;
   height: 100%;

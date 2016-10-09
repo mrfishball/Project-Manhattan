@@ -130,10 +130,9 @@ input[type="text"] {
 	  display: -ms-flexbox;
 	  display: -webkit-flex;
 	  display: flex;
-	  justify-content: center;
 	}
 	.header-nav {
-		float: left;
+		margin-left: 2.5vw;
 		width: 95vw;
 	}
 	.menu-slide-bottom {

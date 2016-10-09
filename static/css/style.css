@@ -66,8 +66,8 @@ body.has-active-menu {
 	}
 	#hamburger-menu {
 		cursor: pointer;
-	  position: absolute;
-		margin-top: -9px;
+	  position: relative;
+		margin-top: -17px;
 		margin-left: 20px;
 		padding-left: 1.25em;
 	}
@@ -86,7 +86,8 @@ body.has-active-menu {
 	  border-bottom: 0.125em solid;
 	}
 	#pac-input {
-		margin-left: 55px;
+		margin-left: 15px;
+		width: 100%;
 	}
 
 	.menu-push-left,

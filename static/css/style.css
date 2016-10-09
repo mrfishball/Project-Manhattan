@@ -42,8 +42,6 @@ body.has-active-menu {
 		z-index: 50;
 		background-color: #fff;
 		position: absolute;
-/*		display: -webkit-box;
-	  display: -moz-box;*/
 	  display: -ms-flexbox;
 	  display: -webkit-flex;
 	  display: flex;
@@ -117,15 +115,13 @@ body.has-active-menu {
 	}
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
-	.header {
-/*		display: -webkit-box;
-	  display: -moz-box;*/
+/*	.header {
 	  display: -ms-flexbox;
 	  display: -webkit-flex;
 	  display: flex;
 	  justify-content: center;
 	  min-width: 100%;
-	}
+	}*/
 	.header-nav {
 		width: 95%;
 	}

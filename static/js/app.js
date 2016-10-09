@@ -205,8 +205,6 @@ var Point = function(place) {
 		*/
 		viewModel.selected(self);
 		$("#fotorama").fotorama({data :self.gallery});
-		// map.setZoom(16);
-		// map.setCenter(self.marker.position);
 		pushLeft.close();
 		slideLeft.close();
 		slideBottom.open();

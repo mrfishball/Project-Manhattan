@@ -95,7 +95,7 @@ body.has-active-menu {
   }
   #my-location {
   	position: relative;
-  	margin-right: 15px;
+  	margin-right: 20px;
   	cursor: pointer;
   }
   #my-location:before {
@@ -119,7 +119,6 @@ body.has-active-menu {
 	  display: -ms-flexbox;
 	  display: -webkit-flex;
 	  display: flex;
-	  justify-content: center;
 	}
 	.header-nav {
 		width: 95%;

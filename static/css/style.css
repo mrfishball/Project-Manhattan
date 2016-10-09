@@ -123,6 +123,7 @@ body.has-active-menu {
 	  justify-content: center;
 	}
 	.header-nav {
+		float: left;
 		width: 95vw;
 	}
 	.menu-slide-bottom {

@@ -96,9 +96,12 @@ body.has-active-menu {
     -webkit-overflow-scrolling: touch;
   }
   #my-location {
-  	position: absolute;
-  	margin-left: 90%;
+  	position: relative;
+  	margin-right: 15px;
   	cursor: pointer;
+  }
+  #my-location:before {
+  	position: absolute;
   }
   .fa-location-arrow {
   	color: #000;

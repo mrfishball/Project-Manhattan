@@ -8,6 +8,7 @@ body, html {
   font-size: 1em;
   min-width: 100%;
   -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-overflow-scrolling: touch;
 }
 
 body.has-active-menu {
@@ -30,7 +31,7 @@ body.has-active-menu {
   transition: transform 0.1s;
 }
 #map {
-	position: fixed;
+/*	position: fixed;*/
 	min-width: 100vw;
 	min-height: 100vh;
 }
@@ -190,7 +191,6 @@ input[type="text"] {
 .menu-slide-left,
 .menu-push-left {
 	width: 30vw;
-  -webkit-overflow-scrolling: touch;
 	font-size: 1.2em;
   overflow-y: auto;
   height: 100%;

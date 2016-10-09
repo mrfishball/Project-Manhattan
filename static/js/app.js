@@ -1,4 +1,3 @@
-"use strict";
 var mapDiv = document.getElementById("map");
 var map;
 var center = {lat: 40.7484, lng: -73.9857};
@@ -30,20 +29,6 @@ var collection = [
 	{name: "Statue of Liberty", pos: {lat: 40.68926, lng: -74.04454}, type: "Attraction", description: "Iconic National Monument opened in 1886, offering guided tours, a museum & city views."},
 	{name: "Rockefeller Center", pos: {lat: 40.75874, lng: -73.97870}, type: "Attraction", description: "Sights abound at this famous complex, home to an ice rink, TV studios & a giant Christmas tree."},
 ];
-
-/**
- * Check if local storage feature is supposrted by the browser.
-*/
-// function isLocalStorage(){
-//     var test = 'test';
-//     try {
-//         localStorage.setItem(test, test);
-//         localStorage.removeItem(test);
-//         return true;
-//     } catch(e) {
-//         return false;
-//     }
-// }
 
 function initMap() {
   map = new google.maps.Map(mapDiv, {
@@ -139,7 +124,7 @@ var Point = function(place) {
   			callback(self.id);
 
   	}).fail(function() {
-  			self.error = "Oops! Something is wrong :("
+  			self.error = swal(alertOptions, alertAction);
   		});
   }
 
@@ -155,9 +140,9 @@ var Point = function(place) {
   				return {"img": (photo.prefix + photo.height + "x" + photo.width + photo.suffix)};
   			}));
   	}).fail(function() {
-  			self.error = "Oops! Something is wrong :("
+  			self.error = swal(alertOptions, alertAction);
   		});
-  }
+  	}
 
   self.getInfo(self.getPhotos);
   /**
@@ -270,5 +255,5 @@ var ViewModel = function(list) {
         place.isVisible(doesMatch);
         return doesMatch;
     });
-});
+	});
 }

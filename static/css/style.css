@@ -115,13 +115,12 @@ body.has-active-menu {
 	}
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
-/*	.header {
+	.header {
 	  display: -ms-flexbox;
 	  display: -webkit-flex;
 	  display: flex;
 	  justify-content: center;
-	  min-width: 100%;
-	}*/
+	}
 	.header-nav {
 		width: 95%;
 	}

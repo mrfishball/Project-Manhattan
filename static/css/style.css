@@ -6,6 +6,7 @@ body, html {
   font-family: 'Roboto Condensed', sans-serif, Helvetica, Arial;
   font-size: 1em;
   min-width: 100%;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
 body.has-active-menu {
@@ -119,9 +120,10 @@ body.has-active-menu {
 	  display: -ms-flexbox;
 	  display: -webkit-flex;
 	  display: flex;
+	  justify-content: center;
 	}
 	.header-nav {
-		width: 95%;
+		width: 95vw;
 	}
 	.menu-slide-bottom {
 		width: 100vw;

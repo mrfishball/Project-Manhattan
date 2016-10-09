@@ -31,7 +31,6 @@ body.has-active-menu {
   transition: transform 0.1s;
 }
 #map {
-/*	position: fixed;*/
 	min-width: 100vw;
 	min-height: 100vh;
 }
@@ -259,7 +258,7 @@ input[type="text"] {
 	background-color: #fafafa;
   vertical-align: middle;
 /*  width: 90vw;*/
-  height: 85vh;
+  height: 75vh;
   text-align: center;
   overflow-x: scroll;
   bottom: 0;

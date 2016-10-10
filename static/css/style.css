@@ -69,11 +69,6 @@ input[type="text"] {
 	  width: 320px;
 	}
 
-#pac-input {
-	margin-left: 15px;
-	width: 100%;
-}
-
 #my-location {
 	position: relative;
 	margin-right: 20px;
@@ -100,7 +95,7 @@ input[type="text"] {
 	#hamburger-menu {
 		cursor: pointer;
 	  position: relative;
-		margin-top: -17px;
+		margin-top: -18px;
 		margin-left: 20px;
 		padding-left: 1.25em;
 	}
@@ -121,6 +116,11 @@ input[type="text"] {
 	  border-bottom: 0.125em solid;
 	}
 
+	#pac-input {
+		margin-left: 15px;
+		width: 100%;
+	}
+
 	.menu-slide-bottom {
 		width: 90vw;
 		left: 5vw;
@@ -139,9 +139,14 @@ input[type="text"] {
 	}
 
 	.header-nav img {
-		width: 35px;
+		width: 30px;
 		margin-top: 10px;
-		margin-left: 10px;
+		margin-left: 7px;
+	}
+
+	#pac-input {
+		margin-left: 7px;
+		width: 100%;
 	}
 
 	.menu-slide-bottom {

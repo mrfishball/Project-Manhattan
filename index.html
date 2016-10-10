@@ -18,11 +18,11 @@
 			<div class="header">
 		    <div class="header-nav">
 		    	<img src="static/img/logo.svg">
-	     		<div id="hamburger-menu" class="slider disabler">
+	     		<div id="hamburger-menu" class="slider disabler" data-bind="event: { click: slideMenu }">
 	     		</div>
-	     		<input id="pac-input" class="controls" type="text" placeholder="Search..." data-bind="value: search, valueUpdate: 'keyup'" autocomplete="off">
+	     		<input id="pac-input" class="controls" type="text" placeholder="Search..." data-bind="event: { focus: pushMenu }, value: search, valueUpdate: 'keyup'" autocomplete="off">
 	     		<input id="pac-input-mobile" class="controls" type="text" placeholder="Search..." data-bind="value: search, valueUpdate: 'keyup'" autocomplete="off">
-	     		<div id="my-location" class="slider"><i class="fa fa-location-arrow slider" aria-hidden="true"></i></div>
+	     		<div id="my-location" class="slider" data-bind="event: { click: centerMe }"><i class="fa fa-location-arrow slider" aria-hidden="true"></i></div>
 		    </div>
 		  </div><!--header -->
 			<div class="content">
@@ -93,15 +93,15 @@
 
 		</nav><!-- Menu slide from bottom -->
 
-		<div id="mask" class="mask"></div>
+		<div id="mask" class="mask" data-bind="event: { click: closeMenu }"></div>
 		<script type="text/javascript" src="static/js/sweetalert.min.js"></script>
 		<script type="text/javascript" src="static/js/error.js"></script>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script type="text/javascript" src="static/js/menu.js"></script>
+		<script type="text/javascript" src="static/js/fotorama.js"></script>
+		<script type="text/javascript" src="https://use.fontawesome.com/e77a3a669b.js"></script>
 		<script type="text/javascript" src="static/js/knockout-3.4.0.js"></script>
 		<script type="text/javascript" src="static/js/app.js"></script>
 		<script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoVzrmlxfvUBwId_KoqAF5PBnaHNDOEHU&callback=initMap"></script>
-		<script type="text/javascript" src="https://use.fontawesome.com/e77a3a669b.js"></script>
-		<script type="text/javascript" src="static/js/menu.js"></script>
-		<script type="text/javascript" src="static/js/fotorama.js"></script>
 	</body>
 </html>

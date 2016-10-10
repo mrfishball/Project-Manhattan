@@ -151,36 +151,3 @@ var pushLeft = new Menu({
   menuOpenerClass: '.slider'
   // maskId: '#mask'
 });
-
-var searching = document.querySelector('#pac-input');
-var slideLeftBtn = document.querySelector('#hamburger-menu');
-var centerMe = document.querySelector('#my-location');
-var gpsLogo = document.querySelector('.fa-location-arrow');
-var closeBottom = document.querySelector('#mask');
-
-centerMe.addEventListener('click', function(e) {
-  e.preventDefault;
-  map.setCenter(center);
-  map.setZoom(12);
-});
-
-slideLeftBtn.addEventListener('click', function(e) {
-  e.preventDefault;
-  slideLeft.open();
-  map.panBy(-200, 0);
-});
-
-searching.addEventListener('focus', function(e) {
-  e.preventDefault;
-  slideLeft.close();
-  pushLeft.open();
-  map.setCenter(center);
-  map.setZoom(12);
-  map.panBy(150, 0);
-});
-
-closeBottom.addEventListener('click', function(e) {
-  e.preventDefault;
-  slideBottom.close();
-})
-

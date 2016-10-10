@@ -254,4 +254,26 @@ var ViewModel = function(list) {
         return doesMatch;
     });
 	});
+
+	self.centerMe = function() {
+	  map.setCenter(center);
+	  map.setZoom(12);
+	}
+
+	self.slideMenu = function() {
+	  slideLeft.open();
+	  map.panBy(-200, 0);
+	}
+
+	self.pushMenu = function() {
+	  slideLeft.close();
+	  pushLeft.open();
+	  map.setCenter(center);
+	  map.setZoom(12);
+	  map.panBy(150, 0);
+	}
+
+	self.closeMenu = function() {
+	  slideBottom.close();
+	}
 }

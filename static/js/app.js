@@ -1,3 +1,4 @@
+"use strict"
 var mapDiv = document.getElementById("map");
 var map;
 var center = {lat: 40.7484, lng: -73.9857};
@@ -60,10 +61,9 @@ function initMap() {
   /**
 	 * Check if map is loaded before creating the viewmodel
   */
-  google.maps.event.addListenerOnce(map, "idle", function() {
-		viewModel = new ViewModel(collection);
-		ko.applyBindings(viewModel);
-  });
+  
+	viewModel = new ViewModel(collection);
+	ko.applyBindings(viewModel);
 }
 
 var Point = function(place) {
@@ -97,9 +97,9 @@ var Point = function(place) {
   */
   self.isVisible.subscribe(function(currentState) {
     if (currentState) {
-      self.marker.setMap(map);
+      self.marker.setVisible(true);
     } else {
-      self.marker.setMap(null);
+      self.marker.setVisible(false);
     }
   });
 
@@ -122,7 +122,7 @@ var Point = function(place) {
   			self.contact = response.response.venues[0].contact.formattedPhone;
   			self.url = response.response.venues[0].url;
 
-  			console.log(response.response);
+  			console.log(response);
 
   			callback(self.id);
 
@@ -182,6 +182,7 @@ var Point = function(place) {
 		var contentString = "<h2>" + place.name + "</h2><br>";
 		infowindow.setContent(contentString + place.description);
 		infowindow.open(map, self.marker);
+		self.marker.setAnimation(google.maps.Animation.BOUNCE);
 	}
 	/**
 	 * Dismiss the infowindow.
@@ -195,7 +196,6 @@ var Point = function(place) {
 	*/
 	self.marker.addListener("mouseover", function() {
 		self.open();
-		self.marker.setAnimation(google.maps.Animation.BOUNCE);
 	});
 
 	self.marker.addListener("mouseout", function() {
@@ -215,7 +215,7 @@ var Point = function(place) {
 	});
 }
 /**
-		This is our ViewModel that handles displaying a menu of destinations, filter/search through the menu and finally displaying markers of these destinations on the map.
+		This is our ViewModel that handles the displaying of a menu of destinations, filter/search through the menu and finally displaying the markers of these destinations on the map.
 */
 var ViewModel = function(list) {
 	var self = this;

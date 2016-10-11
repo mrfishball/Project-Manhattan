@@ -178,11 +178,11 @@ input[type="text"] {
 	}
 
 	.fotorama-wrapper {
-		width: 95vw;
+		width: 100vw;
 	}
 
 	.page-footer .container {
-	  min-width: 98vw;
+	  min-width: 100vw;
 	}
 }
 /**

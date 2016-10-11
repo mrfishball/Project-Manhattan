@@ -69,19 +69,44 @@
 				<div id="fotorama" class="fotorama" data-nav="thumbs" data-auto="false" data-width="100%" data-height="50%" data-fit="contain" data-allowfullscreen="true">
 				</div>
 			</div>
-
-
-
 		  <ul class="menu-items" data-bind="visible: !selected().error">
+		  	<div class="page-footer example">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 data-bind="text: selected().name"></h5>
+                <p data-bind="text: selected().type"></p>
+                <p data-bind="text: selected().address[0]"></p>
+                <p data-bind="text: selected().address[1]"></p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5>Contacts</h5>
+                <ul>
+                  <li><a data-bind="text: selected().contact" href="#!"></a></li>
+                  <li><a data-bind="text: selected().url" href="#!"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © Project MANHATTAN 2016
+            <!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> -->
+            </div>
+          </div>
+        </div>
+
+
+
 			<!-- Cards-->
-				<div class="card card--big">
+				<!-- <div class="card card--big">
 				  <h2 class="card__title" data-bind="text: selected().name"></h2>
 				  <p class="card__text" data-bind="text: selected().address"></p>
 				  <div class="card__action-bar">
 				    <span class="card__subtitle"><p data-bind="text: selected().contact"></p></span>
 				    <span class="card__subtitle"><p data-bind="text: selected().url"></p></span>
 				  </div>
-				</div>
+				</div> -->
 		  	<!-- <h4 data-bind="text: selected().name"></h4>
 		  	<p data-bind="text: selected().contact"></p>
 		  	<p data-bind="text: selected().address"></p>

@@ -73,9 +73,10 @@ var Point = function(place) {
 	self.type = place.type;
 	self.description = place.description;
 	self.error = null;
-	self.address = null;
+	self.address = [];
 	self.contact = null;
 	self.url = null;
+	self.type = null;
 	self.id = null;
 	self.gallery = null;
 	self.isVisible = ko.observable(false);
@@ -115,11 +116,13 @@ var Point = function(place) {
 
   	$.getJSON(requestAPI).done(function(response) {  			
   			self.id = response.response.venues[0].id;
-  			self.address = response.response.venues[0].location.formattedAddress;
+  			self.type = response.response.venues[0].categories[0].name;
+  			self.address.push(response.response.venues[0].location.formattedAddress[0]);
+  			self.address.push(response.response.venues[0].location.formattedAddress[1]);
   			self.contact = response.response.venues[0].contact.formattedPhone;
   			self.url = response.response.venues[0].url;
 
-  			// console.log(response.response.venues[0]);
+  			console.log(response.response);
 
   			callback(self.id);
 

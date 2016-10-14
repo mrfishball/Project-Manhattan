@@ -24,3 +24,4 @@ Local run:
 	Simple run the index.html file included.
 
 By: Steven Kwok
+Powered by: Foursquare

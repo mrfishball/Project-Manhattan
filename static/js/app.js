@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 var mapDiv = document.getElementById("map");
 var map;
 var center = {lat: 40.7484, lng: -73.9857};
@@ -29,7 +29,7 @@ var collection = [
 	{name: "Times Square", pos: {lat: 40.75890, lng: -73.98513}, type: "Attraction", description: "Bustling destination in the heart of the Theater District known for bright lights, shopping & shows."},
 	{name: "Statue of Liberty", pos: {lat: 40.68926, lng: -74.04454}, type: "Attraction", description: "Iconic National Monument opened in 1886, offering guided tours, a museum & city views."},
 	{name: "Rockefeller Center", pos: {lat: 40.75874, lng: -73.97870}, type: "Attraction", description: "Sights abound at this famous complex, home to an ice rink, TV studios & a giant Christmas tree."},
-];
+]
 
 function initMap() {
   map = new google.maps.Map(mapDiv, {

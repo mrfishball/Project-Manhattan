@@ -71,15 +71,15 @@
           <div class="row">
             <div class="col l6 s12">
               <h5 data-bind="text: selected().name"></h5>
-              <p data-bind="text: selected().type"></p>
-              <p data-bind="text: selected().address[0]"></p>
-              <p data-bind="text: selected().address[1]"></p>
+              <span><i class="fa fa-building" aria-hidden="true"></i><p data-bind="text: selected().type"></p></span>
+              <span><i class="fa fa-map-marker" aria-hidden="true"></i><p data-bind="text: selected().address[0]"></p></span>
+              <p class="address-two" data-bind="text: selected().address[1]"></p>
             </div>
             <div class="col l4 offset-l2 s12">
               <h5>Contacts</h5>
               <ul>
-                <li><p data-bind="text: selected().contact"></p></li>
-                <li><p data-bind="text: selected().url"></p></li>
+                <li><i class="fa fa-phone" aria-hidden="true"></i><p data-bind="text: selected().contact ? selected().contact : 'N/A'"></p></li>
+                <li><i class="fa fa-external-link" aria-hidden="true"></i><p data-bind="text: selected().url"></p></li>
               </ul>
             </div>
           </div>

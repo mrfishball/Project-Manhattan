@@ -390,9 +390,17 @@ input[type="text"] {
 }
 
 .page-footer p {
-	display: block;
 	color: #8c8c8c;
-	margin: 10px 0 10px 0;
+	display: inline-block;
+	margin: 10px 0 10px 10px;
+}
+
+.page-footer .address-two {
+	margin-left: 22px;
+}
+
+.page-footer span {
+	display: block;
 }
 
 .page-footer .footer-copyright {

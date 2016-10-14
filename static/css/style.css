@@ -148,7 +148,7 @@ input[type="text"] {
 
 	.page-footer {
 		float: left;
-	  min-height: 61.8%;
+	  height: 61.8vh;
 	  width: 60vw;
 	}
 }
@@ -343,6 +343,11 @@ input[type="text"] {
   padding-left: 0;
   background-color: #252526;
   overflow: hidden;
+}
+
+.page-footer .container {
+	width: 100%;
+	height: 95%;
 }
 
 .page-footer .container .row {

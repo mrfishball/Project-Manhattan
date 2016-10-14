@@ -151,12 +151,12 @@ input[type="text"] {
 	}
 
 	.fotorama-wrapper {
-		width: 55vw;
+		width: 65vw;
 	}
 
 	.page-footer {
 		float: left;
-	  width: 45vw;
+	  width: 35vw;
 	}
 
 	.page-footer .container {
@@ -410,4 +410,9 @@ input[type="text"] {
   line-height: 50px;
   color: rgba(255,255,255,0.8);
   background-color: rgba(51,51,51,0.85);
+}
+
+.page-footer .footer-copyright small{
+	margin-left: 10px; 
+	color: #707075;
 }

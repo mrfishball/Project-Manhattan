@@ -131,7 +131,6 @@ input[type="text"] {
 	}
 
 	.menu-slide-bottom {
-		background: #fafafa;
 		display: -ms-flexbox;
 	  display: -webkit-flex;
 	  display: flex;
@@ -140,15 +139,6 @@ input[type="text"] {
 		flex-direction: row;
 	  width: 100vw;
 	  height: auto;
-	  text-align: center;
-	  overflow: auto;
-	  -webkit-box-shadow: 0px -2px 3px 0px rgba(0,0,0,0.2);
-		-moz-box-shadow: 0px -2px 3px 0px rgba(0,0,0,0.2);
-		box-shadow: 0px -2px 3px 0px rgba(0,0,0,0.2);
-	  transform: translateY(86vh);
-	  padding: 0;
-	  left: 0;
-	  bottom: 0;
 	}
 
 	.fotorama-wrapper {
@@ -158,14 +148,8 @@ input[type="text"] {
 
 	.page-footer {
 		float: left;
-		color: #fff;
-	  padding-top: 20px;
-	  padding-left: 0;
-	  background-color: #252526;
-	  min-width: 750px;
 	  min-height: 52.2%;
 	  width: 60vw;
-	  overflow: hidden;
 	}
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
@@ -196,18 +180,8 @@ input[type="text"] {
 	}
 
 	.menu-slide-bottom {
-		background: #fafafa;
 	  width: 100vw;
 	  height: 75vh;
-	  text-align: center;
-	  overflow: auto;
-	  -webkit-box-shadow: 0px -2px 3px 0px rgba(0,0,0,0.2);
-		-moz-box-shadow: 0px -2px 3px 0px rgba(0,0,0,0.2);
-		box-shadow: 0px -2px 3px 0px rgba(0,0,0,0.2);
-	  transform: translateY(86vh);
-	  padding: 0;
-	  left: 0;
-	  bottom: 0;
 	}
 
 	.fotorama-wrapper {
@@ -216,13 +190,7 @@ input[type="text"] {
 	}
 
 	.page-footer {
-		color: #fff;
-	  padding-top: 20px;
-	  padding-left: 0;
-	  background-color: #252526;
-	  min-width: 750px;
 	  width: 100vw;
-	  overflow: hidden;
 	}
 }
 /**
@@ -354,6 +322,27 @@ input[type="text"] {
 
 .menu-slide-bottom.is-active {
   transform: translateY(0);
+}
+
+.menu-slide-bottom {
+	background-color: #252526;
+	text-align: center;
+	overflow: auto;
+  -webkit-box-shadow: 0px -2px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px -2px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px -2px 3px 0px rgba(0,0,0,0.2);
+  transform: translateY(86vh);
+  padding: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.page-footer {
+	color: #fff;
+  padding-top: 20px;
+  padding-left: 0;
+  background-color: #252526;
+  overflow: hidden;
 }
 
 .page-footer .container .row {

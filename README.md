@@ -1,8 +1,13 @@
-Project Manhattan v1.0
+Project Manhattan v1.1
 
 	Explore the city that never sleeps.
 
-	Changes:
+	Changes v1.1:
+		- Added Google Maps API request fallback.
+		- NEW layout for the location info page and gallery.
+
+	Changes v1.0:
+
 		- Moved Google Maps API call to the end of the script list.
 		- Project Manhattan now displays correctly across all broswers.
 		- Use event-binding to handle menu opening and closing.

@@ -64,20 +64,34 @@
 
 		<nav id="menu-slide-bottom" class="menu menu-slide-bottom">
 			<div id="close"></div>
-	  	<div class="page-footer example">
+	  	<div class="page-footer">
         <div class="container">
           <div class="row">
             <div class="col l6 s12">
-              <h5 data-bind="text: selected().name"></h5>
-              <span><i class="fa fa-building" aria-hidden="true"></i><p data-bind="text: selected().type"></p></span>
-              <span><i class="fa fa-map-marker" aria-hidden="true"></i><p data-bind="text: selected().address[0]"></p></span>
-              <p class="address-two" data-bind="text: selected().address[1]"></p>
+            	<div id="infoHeader">
+								<h5 data-bind="text: selected().name"></h5>
+								<div id="rating" data-bind="style: { backgroundColor: '#' + selected().ratingStyle }, visible: selected().rating">	
+									<h4 data-bind="text: selected().rating"></h4>
+									<small>/10</small>
+								</div>
+            	</div>
+              
+              <div id="type">
+								<span><i class="fa fa-building" aria-hidden="true"></i></span>
+								<p data-bind="text: selected().type"></p>
+              </div>
+              <div id="address">
+              	<span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+              	<ul data-bind="foreach: selected().address">
+              		<li><p data-bind="text: $data"></p></li> 
+              	</ul>
+              </div>
             </div>
             <div class="col l4 offset-l2 s12">
               <h5>Contacts</h5>
               <ul>
-                <li><i class="fa fa-phone" aria-hidden="true"></i><p data-bind="text: selected().contact ? selected().contact : 'N/A'"></p></li>
-                <li><i class="fa fa-external-link" aria-hidden="true"></i><p data-bind="text: selected().url"></p></li>
+                <li class="contacts"><i class="fa fa-phone" aria-hidden="true"></i><p data-bind="text: selected().contact ? selected().contact : 'N/A'"></p></li>
+                <li class="contacts"><i class="fa fa-external-link" aria-hidden="true"></i><a data-bind="attr: { href: selected().url }, text: selected().url"></a></li>
               </ul>
             </div>
           </div>

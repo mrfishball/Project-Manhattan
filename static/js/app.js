@@ -70,15 +70,15 @@ var Point = function(place) {
 	var self = this;
 	self.name = place.name;
 	self.pos = place.pos;
-	self.type = place.type;
 	self.description = place.description;
 	self.error = null;
-	self.address = [];
+	self.address = null;
 	self.contact = null;
 	self.url = null;
 	self.type = null;
 	self.id = null;
 	self.gallery = null;
+	self.rating = null;
 	self.isVisible = ko.observable(false);
 	/**
 	 * Create a marker for this destination.
@@ -111,20 +111,34 @@ var Point = function(place) {
    * Callback to getPhotos function to fetch pictures of the  
    * location as venue ID from the first fetch is required.
   */
-  self.getInfo = function(callback) {
+
+  self.getVenueID = function(callback) {
   	var requestAPI = "https://api.foursquare.com/v2/venues/search?client_id="+client_id+"&client_secret="+secret+"&v=20161002"+"&ll="+place.pos.lat+","+place.pos.lng+"&query="+ place.name +"&limit=1";
 
   	$.getJSON(requestAPI).done(function(response) {  			
   			self.id = response.response.venues[0].id;
-  			self.type = response.response.venues[0].categories[0].name;
-  			self.address.push(response.response.venues[0].location.formattedAddress[0]);
-  			self.address.push(response.response.venues[0].location.formattedAddress[1]);
-  			self.contact = response.response.venues[0].contact.formattedPhone;
-  			self.url = response.response.venues[0].url;
-
-  			console.log(response);
-
   			callback(self.id);
+  	}).fail(function() {
+  			self.error = swal(alertOptions, alertAction);
+  		});
+  }
+
+  self.getInfo = function(venueID) {
+  	var requestAPI = "https://api.foursquare.com/v2/venues/"+venueID+"?client_id="+client_id+"&client_secret="+secret+"&v=20161002";
+
+  	$.getJSON(requestAPI).done(function(response) {
+
+  			console.log(response.response.venue);
+  			self.type = response.response.venue.categories.map(function(place) {
+  				return place.name;
+  			}).join(", ");
+  			self.address = response.response.venue.location.formattedAddress;
+  			self.contact = response.response.venue.contact.formattedPhon;
+  			self.url = response.response.venue.url;
+  			self.rating = response.response.venue.rating;
+  			self.ratingStyle = response.response.venue.ratingColor;
+
+  			console.log(self.rating);
 
   	}).fail(function() {
   			self.error = swal(alertOptions, alertAction);
@@ -138,6 +152,8 @@ var Point = function(place) {
   self.getPhotos = function(venueID) {
   	var requestAPI = "https://api.foursquare.com/v2/venues/"+venueID+"/photos?client_id="+client_id+"&client_secret="+secret+"&v=20161002";
 
+  	// console.log(requestAPI);
+
   	$.getJSON(requestAPI).done(function(response) {
   			self.gallery = (response.response.photos.items.map(function(photo) {
   				return {"img": (photo.prefix + photo.height + "x" + photo.width + photo.suffix)};
@@ -147,7 +163,8 @@ var Point = function(place) {
   		});
   	}
 
-  self.getInfo(self.getPhotos);
+  	self.getVenueID(self.getPhotos);
+  	self.getVenueID(self.getInfo);
   /**
    * To re position the target marker and the map view to compensate 
    * for the shifted map view panel when the search menu pushes in 

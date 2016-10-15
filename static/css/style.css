@@ -11,6 +11,10 @@ body, html {
   -webkit-overflow-scrolling: touch;
   -webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	-webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 body.has-active-menu {
@@ -406,6 +410,7 @@ input[type="text"] {
 .row .col.s12 {
   width: 100%;
   margin-left: auto;
+  margin-bottom: 15px;
   left: auto;
   right: auto;
 }
@@ -421,22 +426,66 @@ input[type="text"] {
 	display: block;
 	font-weight: lighter;
 	font-size: 1.65em;
-	margin: 10px 0 10px 0;
+	margin: 10px 15px 10px 0;
 }
 
-.page-footer p {
+#address,
+#type,
+.contacts,
+#infoHeader,
+#rating {
+	display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+#rating,
+#infoHeader {
+	align-items: center;
+}
+
+#rating {
+	width: 80px;
+	height: 35px;
+	-webkit-box-shadow: 3px 3px 1px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 3px 3px 1px 0px rgba(0,0,0,0.75);
+	box-shadow: 3px 3px 1px 0px rgba(0,0,0,0.75);
+}
+
+#rating h4 {
+	display: block;
+	font-weight: lighter;
+	font-size: 1.65em;
+	padding: 2px 5px 2px 10px ;
+}
+
+#rating small {
+	margin-right: 10px;
+	margin-top: 10px;
+/*	color: #707075;*/
+}
+.page-footer i {
+	margin: 10px 0 10px 0px;
+}
+
+.page-footer p,
+.page-footer a {
 	color: #8c8c8c;
 	display: inline-block;
-	margin: 10px 0 10px 10px;
+	margin: 10px 0 0px 10px;
 }
 
-.page-footer .address-two {
-	margin-left: 20px;
+.page-footer a:active,
+.page-footer a:link,
+.page-footer a:visited,
+.page-footer a:hover {
+	color: #8c8c8c;
+	text-decoration: none;
 }
 
-.page-footer span {
+/*.page-footer span {
 	display: block;
-}
+}*/
 
 .page-footer .footer-copyright {
 	bottom: 0;

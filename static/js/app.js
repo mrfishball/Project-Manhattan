@@ -17,7 +17,7 @@ var collection = [
 	{name: "IPPUDO", pos: {lat: 40.73096, lng: -73.99029}, type: "Dining", description: "Ramen dishes & pork buns are the lures at this popular East Village Japanese eatery."},
 	{name: "Governors Island", pos: {lat: 40.68945, lng: -74.01679}, type: "Attraction", description: "A historic military village and a tranquil scenic playground."},
 	{name: "Le Bernardin", pos: {lat: 40.76169, lng: -73.98188}, type: "Dining", description: "Elite French restaurant offers chef Eric Ripert's refined seafood, expert service & luxurious decor."},
-	{name: "One World observatory", pos: {lat: 40.71335, lng: -74.01337}, type: "Attraction", description: "Observatory located on floors 100-102 of One World Trade Center, with exhibits & restaurants."},
+	{name: "One World Observatory", pos: {lat: 40.71335, lng: -74.01337}, type: "Attraction", description: "Observatory located on floors 100-102 of One World Trade Center, with exhibits & restaurants."},
 	{name: "Madison Square Garden", pos: {lat: 40.75051,lng: -73.99341}, type: "Arena", description: "Billed as the 'world's most famous arena', this icon hosts pro sports, concerts & other big events."},
 	{name: "Gotham Bar and Grill", pos: {lat: 40.73420, lng: -73.99369}, type: "Dining", description: "A West Village fixture still serving standout New American plates in a stylish yet relaxed setting."},
 	{name: "American Museum of Natural History", pos: {lat: 40.78131, lng: -73.97399}, type: "Museum", description: "From dinosaurs to outer space and everything in between, this huge museum showcases natural wonders."},
@@ -180,7 +180,7 @@ var Point = function(place) {
 	*/
 	self.open = function() {
 		var contentString = "<h2>" + place.name + "</h2><br>";
-		infowindow.setContent(contentString + place.description);
+		infowindow.setContent(contentString + "<p class='info'>" + place.description + "</p>");
 		infowindow.open(map, self.marker);
 		self.marker.setAnimation(google.maps.Animation.BOUNCE);
 	}

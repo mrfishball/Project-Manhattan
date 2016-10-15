@@ -9,6 +9,8 @@ body, html {
   min-width: 100%;
   -ms-overflow-style: -ms-autohiding-scrollbar;
   -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 body.has-active-menu {
@@ -20,7 +22,7 @@ body.has-active-menu {
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #000; 
+    background: #252526; 
 }
 ::-webkit-scrollbar-thumb:window-inactive {
     background: #fff; 
@@ -28,6 +30,23 @@ body.has-active-menu {
 
 ul {
 	list-style: none;
+}
+
+h2,
+.info {
+	display: block;
+	margin-left: 15px;
+	margin-bottom: 15px;
+}
+
+h2 {
+	font-size: 2.2em;
+	margin-top: 15px;
+	font-weight: normal;
+}
+
+.info {
+	font-size: 1.2em;
 }
 
 #wrapper {
@@ -132,14 +151,24 @@ input[type="text"] {
 
 	.menu-slide-bottom,
 	.fotorama-wrapper,
-	.page-footer {
+	.page-footer,
+	.menu-slide-left #close,
+	.menu-push-left #close,
+	.menu-slide-left #close h3,
+	.menu-push-left #close h3,
+	.menu-slide-left #close i,
+	.menu-push-left #close i {
 		display: -ms-flexbox;
 	  display: -webkit-flex;
 	  display: flex;
 	}
 
 	.fotorama-wrapper,
-	.page-footer {
+	.page-footer,
+	.menu-slide-left #close h3,
+	.menu-push-left #close h3,
+	.menu-slide-left #close i,
+	.menu-push-left #close i {
 		-ms-flex-direction: column;
 	  -webkit-flex-direction: column;
 	  flex-direction: column;
@@ -209,16 +238,29 @@ input[type="text"] {
  */
 #close {
 	height: 90px;
-	display: inline-block;
 	width: 100%;
 	cursor: pointer;
+	background-color: #252526;
+/*	border: 1px solid red;*/
+}
+
+#close h3,
+#close i {
+	vertical-align: middle;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
 }
 
 #close h3 {
-	float: left;
-	margin-top: 35px;
-	margin-right: 50px;
-	margin-left: 10px;
+	color: #fff;
+	font-weight: lighter;
+	width: 90%;
+}
+
+#close i {
+	margin: 0 auto;
+	width: 10%;
 }
 
 .menu {
@@ -265,13 +307,6 @@ input[type="text"] {
 	box-shadow: 2px 0px 3px 0px rgba(0,0,0,0.2);
 }
 
-.menu-slide-left img,
-.menu-push-left img {
-	float: left;
-	width: 15%;
-	margin-left: 20px;
-	margin-top: 15px;
-}
 .menu-slide-left .menu-item,
 .menu-push-left .menu-item {
   display: block;
@@ -281,17 +316,17 @@ input[type="text"] {
 
 .menu-slide-left .fa-caret-left,
 .menu-push-left .fa-caret-left {
-	color: #000;
+	color: #fff;
 	float: right;
-	margin-top: 40px;
-	padding-right: 30px;
+/*	margin-top: 40px;
+	padding-right: 30px;*/
 }
 
 .menu-slide-left .menu-item h4,
 .menu-push-left .menu-item h4 {
 	display: block;
 	height: 60px;
-	font-weight: inherit;
+	font-weight: lighter;
 	padding-top: 35px;
 }
 

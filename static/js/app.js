@@ -50,6 +50,7 @@ function initMap() {
     // disableDefaultUI: false,
     mapTypeControl: false,
     draggable: true,
+    scrollwheel: false,
     /**
 		 * Custom map styles.
   	*/

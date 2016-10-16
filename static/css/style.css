@@ -540,9 +540,12 @@ input[type="text"] {
 #rating {
 	width: 80px;
 	height: 35px;
-	-webkit-box-shadow: 3px 3px 1px 0px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.75),0 -1px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0 4px 8px rgba(0,0,0,0.75),0 -1px 0px rgba(0,0,0,0.02);
+	box-shadow: 0 4px 8px rgba(0,0,0,0.75),0 -1px 0px rgba(0,0,0,0.02);
+/*	-webkit-box-shadow: 3px 3px 1px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 3px 3px 1px 0px rgba(0,0,0,0.75);
-	box-shadow: 3px 3px 1px 0px rgba(0,0,0,0.75);
+	box-shadow: 3px 3px 1px 0px rgba(0,0,0,0.75);*/
 }
 
 #rating h4 {
@@ -556,7 +559,6 @@ input[type="text"] {
 #rating small {
 	margin-right: 10px;
 	margin-top: 10px;
-/*	color: #707075;*/
 }
 .page-footer i {
 	margin: 10px 0 10px 0px;
@@ -576,10 +578,6 @@ input[type="text"] {
 	color: #8c8c8c;
 	text-decoration: none;
 }
-
-/*.page-footer span {
-	display: block;
-}*/
 
 .page-footer .footer-copyright {
 	bottom: 0;

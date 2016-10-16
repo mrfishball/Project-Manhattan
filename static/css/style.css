@@ -67,8 +67,8 @@ h2 {
 
 #wrapper.has-push-left {
   -webkit-transform: translateX(30vw);
-      -ms-transform: translateX(30vw);
-          transform: translateX(30vw);
+  -ms-transform: translateX(30vw);
+  transform: translateX(30vw);
 }
 
 input {

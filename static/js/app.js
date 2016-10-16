@@ -1,7 +1,9 @@
 "use strict";
 var mapDiv = document.getElementById("map");
 var map;
-var center = {lat: 40.7484, lng: -73.9857};
+var center = {lat: 40.7454574, lng: -73.9998774};
+
+// var center = {lat: 40.7484, lng: -73.9857};
 var image;
 var infowindow;
 var viewModel;
@@ -29,6 +31,7 @@ var collection = [
 	{name: "St. Patrick's Cathedral", pos: {lat: 40.75847, lng: -73.97600}, type: "Attraction", description: "Towering Neo-Gothic church from 1879 with twin spires & storied history opposite Rockefeller Center."},
 	{name: "Chelsea Market", pos: {lat: 40.7421258, lng: -74.0073127}, type: "Market", description: "Indoor marketplace renowned for its wide range of grocers (fish, produce, etc.), shops & eateries."},
 	{name: "Chinatown", pos: {lat: 40.71575, lng: -73.99703}, type: "Attraction", description: "With one of the densest populations of Chinese immigrants in the western hemisphere, Manhattan's Chinatown is a true New York story, the American Dream in action."},
+	{name: "Lady M Cake Boutique", pos: {lat: 40.775633, lng: -73.9643835}, type: "Bakery", description: "Decadent but refined desserts likes crêpes & eclairs distinguish this Upper East Side bakery."},
 	{name: "Macy's", pos: {lat: 40.750545, lng: -73.988555}, type: "Shopping", description: "Department store chain providing brand-name clothing, accessories, home furnishings & housewares."},
 	{name: "The Boil", pos: {lat: 40.73031, lng: -73.99429}, type: "Dining", description: "Sleek bar dishing up raw & cooked Cajun-style seafood by the pound along craft beer & cocktails."},
 	{name: "Webster Hall", pos: {lat: 40.73177, lng: -73.98915}, type: "Entertainment", description: "This nightclub, in a circa-1886 space, has bars, stages & dance floors on several levels."},
@@ -36,6 +39,7 @@ var collection = [
 	{name: "Times Square", pos: {lat: 40.75890, lng: -73.98513}, type: "Attraction", description: "Bustling destination in the heart of the Theater District known for bright lights, shopping & shows."},
 	{name: "Lincoln Center for the Performing Arts", pos: {lat: 40.7724681, lng: -73.9856776}, type: "Theater", description: "Multi-venue complex home to many prominent groups like Metropolitan Opera & New York City Ballet."},
 	{name: "Statue of Liberty", pos: {lat: 40.68926, lng: -74.04454}, type: "Attraction", description: "Iconic National Monument opened in 1886, offering guided tours, a museum & city views."},
+	{name: "Spot Dessert Bar", pos: {lat: 40.7293931, lng: -73.9911106}, type: "Dessert", description: "The sweets combine Asian & American flavors at this St. Marks Place dessert cafe."},
 	{name: "Rockefeller Center", pos: {lat: 40.75874, lng: -73.97870}, type: "Attraction", description: "Sights abound at this famous complex, home to an ice rink, TV studios & a giant Christmas tree."},
 ]
 

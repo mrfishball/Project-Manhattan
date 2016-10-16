@@ -1,6 +1,6 @@
 var alertOptions = {
 	  title: "Oops! Something went wrong :(",
-	  text: "Project Manhattan needs to be reloaded. Check your internet conect if the problem persists.",
+	  text: "Project Manhattan needs to be reloaded. Check your internet connection if the problem persists.",
 	  type: "error",
 	  showCancelButton: true,
 	  confirmButtonColor: "#000",

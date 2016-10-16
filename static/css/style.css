@@ -3,7 +3,7 @@
 	padding: 0;
 }
 body, html {
-	position: absolute;
+	position: fixed;
   font-family: 'Roboto Condensed', sans-serif, Helvetica, Arial;
   font-size: 1em;
   height: 100vh;

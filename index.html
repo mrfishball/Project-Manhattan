@@ -21,17 +21,24 @@
 			<div class="header">
 		    <div class="header-nav">
 		    	<img src="static/img/logo.svg">
-	     		<div id="hamburger-menu" class="slider disabler" data-bind="event: { click: slideMenu }">
+	     		<div id="hamburger-menu" class="slider disabler" data-bind="event: { mousedown: slideMenu }">
 	     		</div>
 	     		<input id="pac-input" class="controls" type="text" placeholder="Search..." data-bind="event: { focus: pushMenu }, value: search, valueUpdate: 'keyup'" autocomplete="off">
 	     		<!-- <input id="pac-input-mobile" class="controls" type="text" placeholder="Search..." data-bind="event: { focus: mobileSearch }, value: search, valueUpdate: 'keyup'" autocomplete="off"> -->
 	     		<input id="pac-input-mobile" class="controls" type="text" placeholder="Search..." data-bind="event: { focus: mobileSearch }, value: search, valueUpdate: 'keyup'" autocomplete="off">
-					<ul class="results" data-bind="foreach: searchResult">
-						<li class="menu-item" data-bind="event: { click: focus }">
-							<h4 data-bind="text: name"></h4>
-						</li>
-					</ul>
-	     		<div id="my-location" class="slider" data-bind="event: { click: centerMe }"><i class="fa fa-location-arrow slider" aria-hidden="true"></i></div>
+					<nav class="results">
+						<ul class="search-items" data-bind="foreach: searchResult">
+							<li class="search-item" data-bind="event: { mousedown: mobileFocus }">
+								<h4 data-bind="text: name"></h4>
+							</li>
+						</ul>
+						<ul class="search-items" data-bind="visible: searchResult() == 0">
+							<li class="search-item">
+						  	<h4>We can't find what you're looking for :(</h4>
+						  </li>
+					  </ul>
+					</nav>
+	     		<div id="my-location" class="slider" data-bind="event: { mousedown: centerMe }"><i class="fa fa-location-arrow slider" aria-hidden="true"></i></div>
 		    </div>
 					
 		  </div><!--header -->

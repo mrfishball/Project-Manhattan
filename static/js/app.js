@@ -200,6 +200,13 @@ var Point = function(place) {
 		map.panBy(-200, 0);
 		self.open();
 	}
+
+	self.mobileFocus = function() {
+		map.setZoom(16);
+		map.setCenter(self.marker.position);
+		map.panBy(0, -200);
+		self.open();
+	}
 	/**
 	 * Display the name and a brief description of the location in a 
 	 * infowindow for the corresponding marker. Also checks if the map 
@@ -210,7 +217,7 @@ var Point = function(place) {
 	*/
 	self.open = function() {
 		var contentString = "<h2>" + place.name + "</h2><br>";
-		infowindow.setContent(contentString + "<p class='info'>" + place.description + "<i><small>" + " - Google" + "</i></small>"  + "</p>" + "<br>" + "<p class='helper'><i>Click or tap on the jumping marker to see more...</i></p>");
+		infowindow.setContent(contentString + "<p class='info'>" + place.description + "<i><small>- Google</i></small></p><br><p class='helper'><i>Click or tap on the jumping marker to see more...</i></p>");
 		infowindow.open(map, self.marker);
 		self.marker.setAnimation(google.maps.Animation.BOUNCE);
 	}

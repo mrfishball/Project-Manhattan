@@ -6,6 +6,7 @@ body, html {
 	position: fixed;
   font-family: 'Roboto Condensed', sans-serif, Helvetica, Arial;
   font-size: 1em;
+  font-weight: lighter;
   height: 100vh;
   -ms-overflow-style: -ms-autohiding-scrollbar;
   -webkit-overflow-scrolling: touch;
@@ -40,13 +41,13 @@ h2,
 .info,
 .helper {
 	display: block;
-	margin-left: 15px;
-	margin-bottom: 15px;
+	margin-left: 10px;
+	margin-bottom: 10px;
 }
 
 h2 {
-	font-size: 2.2em;
-	margin-top: 15px;
+	font-size: 2.0em;
+	margin-top: 10px;
 	font-weight: normal;
 }
 
@@ -237,7 +238,7 @@ input[type="text"] {
 	  left: 0;
 	  right: 0;
 	  z-index: 10;
-	  padding: 0;
+	  padding: 15px 15px 15px 15px;
 	  margin: 0;
 	  background-color: #fff;
 	  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02);
@@ -249,9 +250,22 @@ input[type="text"] {
 	}
 
 	.results li {
-		display: block; 
+		list-style: none;
+		cursor: pointer;
+		display: block;
+		height: 80px;
+		margin: 10px 10px 10px 10px;
+		border: 1px solid #000;
 	}
 
+	.header-nav h4 {
+		display: block;
+		font-weight: lighter;
+		line-height: 80px;
+		margin: 0 auto;
+		font-size: 1.2em;
+	}
+/*
 	.results li:first-child {
 		margin-top: -1px;
 	}
@@ -285,8 +299,8 @@ input[type="text"] {
 
 	.results li:last-child {
 		margin-bottom: -1px;
-	}
-
+	}*/
+/*
 	.results a {
 	  display: block;
 	  position: relative;
@@ -318,7 +332,7 @@ input[type="text"] {
 	  color: #fff;
 	  text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
 	  border-color: #2380dd #2179d5 #1a60aa;
-	}
+	}*/
 
 	.menu-slide-bottom {
 	  width: 100vw;

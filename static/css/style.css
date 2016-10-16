@@ -148,7 +148,8 @@ input[type="text"] {
 		display: none;
 	}*/
 
-	#pac-input-mobile {
+	#pac-input-mobile,
+	.results {
 		display: none;
 	}
 
@@ -227,9 +228,9 @@ input[type="text"] {
 		width: 100%;
 	}
 
-	.main {
+/*	.main {
 		margin-top: 50px;
-	}
+	}*/
 
 	#pac-input {
 		display: none;

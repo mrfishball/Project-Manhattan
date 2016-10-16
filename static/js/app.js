@@ -10,7 +10,7 @@ var secret = "WMH4A3QF0XS5221ZAYKTNFHMIJYXUNMCPSPLZHFVHEWUGD4C";
 
 var collection = [
 	{name: "9/11 Memorial & Museum", pos: {lat: 40.7115646, lng: -74.015363}, type: "Museum", description: "Plaza, pools & exhibits honoring victims of 1993 & 2001 WTC terrorist attacks. Free timed admission."},
-	{name: "Brooklyn Bridge", pos: {lat: 40.7060895, lng: -73.999053}, tpye: "Attraction", description: "Beloved, circa-1883 landmark connecting Manhattan & Brooklyn via a unique stone-&-steel design."},
+	{name: "Brooklyn Bridge", pos: {lat: 40.7060895, lng: -73.999053}, type: "Attraction", description: "Beloved, circa-1883 landmark connecting Manhattan & Brooklyn via a unique stone-&-steel design."},
 	{name: "Empire State Building", pos: {lat: 40.74843, lng: -73.98566}, type: "Attraction", description: "Iconic, art deco office tower from 1931 with exhibits & observatories on the 86th & 102nd floors."},
 	{name: "Shack Shake", pos: {lat: 40.74152, lng: -73.98816}, type: "Dining", description: "Hip, counter-serve chain for gourmet takes on fast-food classics like burgers & frozen custard."},
 	{name: "Central Park", pos: {lat: 40.7829, lng: -73.9654}, type: "Park", description: "Boasting historic hand-carved horses, this carousel is one of the largest in the country."},
@@ -24,6 +24,7 @@ var collection = [
 	{name: "Madison Square Garden", pos: {lat: 40.75051,lng: -73.99341}, type: "Arena", description: "Billed as the 'world's most famous arena', this icon hosts pro sports, concerts & other big events."},
 	{name: "Gotham Bar and Grill", pos: {lat: 40.73420, lng: -73.99369}, type: "Dining", description: "A West Village fixture still serving standout New American plates in a stylish yet relaxed setting."},
 	{name: "American Museum of Natural History", pos: {lat: 40.78131, lng: -73.97399}, type: "Museum", description: "From dinosaurs to outer space and everything in between, this huge museum showcases natural wonders."},
+	{name: "10Below Ice Cream", pos: {lat: 40.7140564, lng: -74.0007738}, type: "Ice Cream Shop", description: "Thai-inspired ice cream rolls made with fresh ingredients right in front of you."},
 	{name: "Madame Tussauds New York", pos: {lat: 40.7564766, lng: -73.9910518}, type: "Museum", description: "Museum chain for life-size wax replicas of famous celebrities & historic icons in themed galleries."},
 	{name: "St. Patrick's Cathedral", pos: {lat: 40.75847, lng: -73.97600}, type: "Attraction", description: "Towering Neo-Gothic church from 1879 with twin spires & storied history opposite Rockefeller Center."},
 	{name: "Chelsea Market", pos: {lat: 40.7421258, lng: -74.0073127}, type: "Market", description: "Indoor marketplace renowned for its wide range of grocers (fish, produce, etc.), shops & eateries."},
@@ -32,7 +33,6 @@ var collection = [
 	{name: "The Boil", pos: {lat: 40.73031, lng: -73.99429}, type: "Dining", description: "Sleek bar dishing up raw & cooked Cajun-style seafood by the pound along craft beer & cocktails."},
 	{name: "Webster Hall", pos: {lat: 40.73177, lng: -73.98915}, type: "Entertainment", description: "This nightclub, in a circa-1886 space, has bars, stages & dance floors on several levels."},
 	{name: "Dominique Ansel Bakery", pos: {lat: 40.72517, lng: -74.00296}, type: "Bakery", description: "Inventive made-to-order French pastries & savory bites in an airy bakery/cafe with outdoor tables."},
-	// {name: "Smorgasburg Williamsburg", pos: {lat: 40.7210243, lng: -73.9643669}, type: "Street Food", description: "Buzzy seasonal outdoor foodie market on Saturdays, offering 75+ vendors & city skyline views."},
 	{name: "Times Square", pos: {lat: 40.75890, lng: -73.98513}, type: "Attraction", description: "Bustling destination in the heart of the Theater District known for bright lights, shopping & shows."},
 	{name: "Lincoln Center for the Performing Arts", pos: {lat: 40.7724681, lng: -73.9856776}, type: "Theater", description: "Multi-venue complex home to many prominent groups like Metropolitan Opera & New York City Ballet."},
 	{name: "Statue of Liberty", pos: {lat: 40.68926, lng: -74.04454}, type: "Attraction", description: "Iconic National Monument opened in 1886, offering guided tours, a museum & city views."},
@@ -77,13 +77,14 @@ function initMap() {
 var Point = function(place) {
 	var self = this;
 	self.name = place.name;
+	self.type = place.type;
 	self.pos = place.pos;
 	self.description = place.description;
 	self.error = null;
 	self.address = null;
 	self.contact = null;
 	self.url = null;
-	self.type = null;
+	self.categories = null;
 	self.id = null;
 	self.gallery = null;
 	self.rating = null;
@@ -138,7 +139,7 @@ var Point = function(place) {
   	var requestAPI = "https://api.foursquare.com/v2/venues/"+venueID+"?client_id="+client_id+"&client_secret="+secret+"&v=20161002";
   	console.log(requestAPI);
   	$.getJSON(requestAPI).done(function(response) {
-  			self.type = response.response.venue.categories.map(function(place) {
+  			self.categories = response.response.venue.categories.map(function(place) {
   				return place.name;
   			}).join(", ");
   			self.address = response.response.venue.location.formattedAddress;

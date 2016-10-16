@@ -2,7 +2,7 @@
 var mapDiv = document.getElementById("map");
 var map;
 var center = {lat: 40.7454574, lng: -73.9998774};
-
+// var isTouch = !('ontouchstart' in document.documentElement);
 // var center = {lat: 40.7484, lng: -73.9857};
 var image;
 var infowindow;

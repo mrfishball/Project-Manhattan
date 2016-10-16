@@ -454,6 +454,7 @@ input[type="text"] {
 
 #rating h4 {
 	display: block;
+	margin: 0 auto;
 	font-weight: lighter;
 	font-size: 1.65em;
 	padding: 2px 5px 2px 10px ;

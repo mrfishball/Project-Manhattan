@@ -219,7 +219,7 @@ var Point = function(place) {
 		self.marker.setAnimation(null);
 	});
 
-	self.marker.addListener("click", function() {
+	self.marker.addListener("mousedown", function() {
 		/**
 		 * Update the selected to the current Point object.
 		*/

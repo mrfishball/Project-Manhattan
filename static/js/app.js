@@ -90,7 +90,7 @@ var Point = function(place) {
 	self.url = null;
 	self.categories = null;
 	self.id = null;
-	self.gallery = null;
+	self.gallery = [];
 	self.rating = null;
 	self.isVisible = ko.observable(false);
 	/**

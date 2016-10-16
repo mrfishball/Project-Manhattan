@@ -9,10 +9,13 @@ var client_id = "OCNGIDK3KNDHPSZS50KTNCNR3CHPHV0EX01AYV0RLDQXHNL2";
 var secret = "WMH4A3QF0XS5221ZAYKTNFHMIJYXUNMCPSPLZHFVHEWUGD4C";
 
 var collection = [
+	{name: "9/11 Memorial & Museum", pos: {lat: 40.7115646, lng: -74.015363}, type: "Museum", description: "Plaza, pools & exhibits honoring victims of 1993 & 2001 WTC terrorist attacks. Free timed admission."},
+	{name: "Brooklyn Bridge", pos: {lat: 40.7060895, lng: -73.999053}, tpye: "Attraction", description: "Beloved, circa-1883 landmark connecting Manhattan & Brooklyn via a unique stone-&-steel design."},
 	{name: "Empire State Building", pos: {lat: 40.74843, lng: -73.98566}, type: "Attraction", description: "Iconic, art deco office tower from 1931 with exhibits & observatories on the 86th & 102nd floors."},
 	{name: "Shack Shake", pos: {lat: 40.74152, lng: -73.98816}, type: "Dining", description: "Hip, counter-serve chain for gourmet takes on fast-food classics like burgers & frozen custard."},
 	{name: "Central Park", pos: {lat: 40.7829, lng: -73.9654}, type: "Park", description: "Boasting historic hand-carved horses, this carousel is one of the largest in the country."},
 	{name: "The Museum of Modern Art", pos: {lat: 40.76142, lng: -73.97764}, type: "Museum", description: "Works from van Gogh to Warhol & beyond plus a sculpture garden, 2 cafes & The Modern restaurant."},
+	{name: "Grand Central Terminal", pos: {lat: 40.7527302, lng: -73.9794181}, type: "Train Station", description: "Iconic train station known for its grand facade & main concourse, also offering shops & dining."},
 	{name: "High Line", pos: {lat: 40.74800, lng:	-74.00473}, type: "Park", description: "Popular park 30 feet above street level on an old rail line, with river & city views."},
 	{name: "IPPUDO", pos: {lat: 40.73096, lng: -73.99029}, type: "Dining", description: "Ramen dishes & pork buns are the lures at this popular East Village Japanese eatery."},
 	{name: "Governors Island", pos: {lat: 40.68945, lng: -74.01679}, type: "Attraction", description: "A historic military village and a tranquil scenic playground."},
@@ -21,12 +24,17 @@ var collection = [
 	{name: "Madison Square Garden", pos: {lat: 40.75051,lng: -73.99341}, type: "Arena", description: "Billed as the 'world's most famous arena', this icon hosts pro sports, concerts & other big events."},
 	{name: "Gotham Bar and Grill", pos: {lat: 40.73420, lng: -73.99369}, type: "Dining", description: "A West Village fixture still serving standout New American plates in a stylish yet relaxed setting."},
 	{name: "American Museum of Natural History", pos: {lat: 40.78131, lng: -73.97399}, type: "Museum", description: "From dinosaurs to outer space and everything in between, this huge museum showcases natural wonders."},
+	{name: "Madame Tussauds New York", pos: {lat: 40.7564766, lng: -73.9910518}, type: "Museum", description: "Museum chain for life-size wax replicas of famous celebrities & historic icons in themed galleries."},
 	{name: "St. Patrick's Cathedral", pos: {lat: 40.75847, lng: -73.97600}, type: "Attraction", description: "Towering Neo-Gothic church from 1879 with twin spires & storied history opposite Rockefeller Center."},
+	{name: "Chelsea Market", pos: {lat: 40.7421258, lng: -74.0073127}, type: "Market", description: "Indoor marketplace renowned for its wide range of grocers (fish, produce, etc.), shops & eateries."},
 	{name: "Chinatown", pos: {lat: 40.71575, lng: -73.99703}, type: "Attraction", description: "With one of the densest populations of Chinese immigrants in the western hemisphere, Manhattan's Chinatown is a true New York story, the American Dream in action."},
+	{name: "Macy's", pos: {lat: 40.750545, lng: -73.988555}, type: "Shopping", description: "Department store chain providing brand-name clothing, accessories, home furnishings & housewares."},
 	{name: "The Boil", pos: {lat: 40.73031, lng: -73.99429}, type: "Dining", description: "Sleek bar dishing up raw & cooked Cajun-style seafood by the pound along craft beer & cocktails."},
 	{name: "Webster Hall", pos: {lat: 40.73177, lng: -73.98915}, type: "Entertainment", description: "This nightclub, in a circa-1886 space, has bars, stages & dance floors on several levels."},
 	{name: "Dominique Ansel Bakery", pos: {lat: 40.72517, lng: -74.00296}, type: "Bakery", description: "Inventive made-to-order French pastries & savory bites in an airy bakery/cafe with outdoor tables."},
+	// {name: "Smorgasburg Williamsburg", pos: {lat: 40.7210243, lng: -73.9643669}, type: "Street Food", description: "Buzzy seasonal outdoor foodie market on Saturdays, offering 75+ vendors & city skyline views."},
 	{name: "Times Square", pos: {lat: 40.75890, lng: -73.98513}, type: "Attraction", description: "Bustling destination in the heart of the Theater District known for bright lights, shopping & shows."},
+	{name: "Lincoln Center for the Performing Arts", pos: {lat: 40.7724681, lng: -73.9856776}, type: "Theater", description: "Multi-venue complex home to many prominent groups like Metropolitan Opera & New York City Ballet."},
 	{name: "Statue of Liberty", pos: {lat: 40.68926, lng: -74.04454}, type: "Attraction", description: "Iconic National Monument opened in 1886, offering guided tours, a museum & city views."},
 	{name: "Rockefeller Center", pos: {lat: 40.75874, lng: -73.97870}, type: "Attraction", description: "Sights abound at this famous complex, home to an ice rink, TV studios & a giant Christmas tree."},
 ]
@@ -116,6 +124,7 @@ var Point = function(place) {
 
   	$.getJSON(requestAPI).done(function(response) {  			
   			self.id = response.response.venues[0].id;
+  			// console.log(self.id);
   			callback(self.id);
   	}).fail(function() {
   			self.error = swal(alertOptions, alertAction);
@@ -127,10 +136,8 @@ var Point = function(place) {
 	*/
   self.getInfo = function(venueID) {
   	var requestAPI = "https://api.foursquare.com/v2/venues/"+venueID+"?client_id="+client_id+"&client_secret="+secret+"&v=20161002";
-
+  	console.log(requestAPI);
   	$.getJSON(requestAPI).done(function(response) {
-
-  			console.log(response.response.venue);
   			self.type = response.response.venue.categories.map(function(place) {
   				return place.name;
   			}).join(", ");
@@ -139,8 +146,6 @@ var Point = function(place) {
   			self.url = response.response.venue.url;
   			self.rating = response.response.venue.rating;
   			self.ratingStyle = response.response.venue.ratingColor;
-
-  			console.log(self.rating);
 
   	}).fail(function() {
   			self.error = swal(alertOptions, alertAction);
@@ -199,7 +204,7 @@ var Point = function(place) {
 	*/
 	self.open = function() {
 		var contentString = "<h2>" + place.name + "</h2><br>";
-		infowindow.setContent(contentString + "<p class='info'>" + place.description + "</p>");
+		infowindow.setContent(contentString + "<p class='info'>" + place.description + "<i><small>" + " - Google" + "</i></small>"  + "</p>");
 		infowindow.open(map, self.marker);
 		self.marker.setAnimation(google.maps.Animation.BOUNCE);
 	}
@@ -306,6 +311,7 @@ var ViewModel = function(list) {
 	 * menu is opened.
 	*/
 	self.pushMenu = function() {
+		infowindow.close();
 	  slideLeft.close();
 	  pushLeft.open();
 	  map.setCenter(center);

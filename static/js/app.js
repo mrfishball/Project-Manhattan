@@ -209,7 +209,7 @@ var Point = function(place) {
 	*/
 	self.open = function() {
 		var contentString = "<h2>" + place.name + "</h2><br>";
-		infowindow.setContent(contentString + "<p class='info'>" + place.description + "<i><small>" + " - Google" + "</i></small>"  + "</p>");
+		infowindow.setContent(contentString + "<p class='info'>" + place.description + "<i><small>" + " - Google" + "</i></small>"  + "</p>" + "<br>" + "<p class='helper'><i>Click or tap on the jumping marker to see more...</i></p>");
 		infowindow.open(map, self.marker);
 		self.marker.setAnimation(google.maps.Animation.BOUNCE);
 	}
@@ -242,7 +242,7 @@ var Point = function(place) {
 		*/
 		viewModel.selected(self);
 		$("#fotorama").fotorama({data :self.gallery});
-		// pushLeft.close();
+		pushLeft.close();
 		// slideLeft.close();
 		slideBottom.open();
 		self.open();

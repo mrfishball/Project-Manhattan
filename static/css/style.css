@@ -37,7 +37,8 @@ ul {
 }
 
 h2,
-.info {
+.info,
+.helper {
 	display: block;
 	margin-left: 15px;
 	margin-bottom: 15px;
@@ -51,6 +52,7 @@ h2 {
 
 .info {
 	font-size: 1.2em;
+	line-height: 1.5em;
 }
 
 #wrapper {

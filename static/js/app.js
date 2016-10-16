@@ -14,7 +14,7 @@ var collection = [
 	{name: "9/11 Memorial & Museum", pos: {lat: 40.7115646, lng: -74.015363}, type: "Museum", description: "Plaza, pools & exhibits honoring victims of 1993 & 2001 WTC terrorist attacks. Free timed admission."},
 	{name: "Brooklyn Bridge", pos: {lat: 40.7061, lng: -73.9969}, type: "Attraction", description: "Beloved, circa-1883 landmark connecting Manhattan & Brooklyn via a unique stone-&-steel design."},
 	{name: "Empire State Building", pos: {lat: 40.74843, lng: -73.98566}, type: "Attraction", description: "Iconic, art deco office tower from 1931 with exhibits & observatories on the 86th & 102nd floors."},
-	{name: "Shack Shake", pos: {lat: 40.74152, lng: -73.98816}, type: "Dining", description: "Hip, counter-serve chain for gourmet takes on fast-food classics like burgers & frozen custard."},
+	{name: "Shake Shack", pos: {lat: 40.74152, lng: -73.98816}, type: "Dining", description: "Hip, counter-serve chain for gourmet takes on fast-food classics like burgers & frozen custard."},
 	{name: "Central Park", pos: {lat: 40.7829, lng: -73.9654}, type: "Park", description: "Boasting historic hand-carved horses, this carousel is one of the largest in the country."},
 	{name: "The Museum of Modern Art", pos: {lat: 40.76142, lng: -73.97764}, type: "Museum", description: "Works from van Gogh to Warhol & beyond plus a sculpture garden, 2 cafes & The Modern restaurant."},
 	{name: "Grand Central Terminal", pos: {lat: 40.7527302, lng: -73.9794181}, type: "Train Station", description: "Iconic train station known for its grand facade & main concourse, also offering shops & dining."},
@@ -242,8 +242,8 @@ var Point = function(place) {
 		*/
 		viewModel.selected(self);
 		$("#fotorama").fotorama({data :self.gallery});
-		pushLeft.close();
-		slideLeft.close();
+		// pushLeft.close();
+		// slideLeft.close();
 		slideBottom.open();
 		self.open();
 	});

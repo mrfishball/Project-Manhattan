@@ -287,6 +287,12 @@ var ViewModel = function(list) {
     });
 	});
 
+	self.mobileSearch = function() {
+		infowindow.close();
+		map.setCenter(center);
+	  map.setZoom(12);
+	}
+
 	/**
 	 * Centers the map and return the zoom level to it's original 
 	 * value.

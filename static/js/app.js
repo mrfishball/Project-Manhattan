@@ -106,12 +106,11 @@ var Point = function(place) {
   self.isVisible(true);
   
   /**
-   * Fetch location info such as venue ID, address, contact etc using
-   * Foursquare's Search Venue API. 
-   * Callback to getPhotos function to fetch pictures of the  
-   * location as venue ID from the first fetch is required.
+   * Get the venue ID using Foursquare's Search Venue API.
+   * Calls back to getPhotos function to fetch pictures of the  
+   * location and getInfo function to get details of location as
+   * venue ID from the first fetch is required.
   */
-
   self.getVenueID = function(callback) {
   	var requestAPI = "https://api.foursquare.com/v2/venues/search?client_id="+client_id+"&client_secret="+secret+"&v=20161002"+"&ll="+place.pos.lat+","+place.pos.lng+"&query="+ place.name +"&limit=1";
 
@@ -123,6 +122,9 @@ var Point = function(place) {
   		});
   }
 
+  /**
+   * Get details of location with an API call. Venue ID is required.
+	*/
   self.getInfo = function(venueID) {
   	var requestAPI = "https://api.foursquare.com/v2/venues/"+venueID+"?client_id="+client_id+"&client_secret="+secret+"&v=20161002";
 
@@ -133,7 +135,7 @@ var Point = function(place) {
   				return place.name;
   			}).join(", ");
   			self.address = response.response.venue.location.formattedAddress;
-  			self.contact = response.response.venue.contact.formattedPhon;
+  			self.contact = response.response.venue.contact.formattedPhone;
   			self.url = response.response.venue.url;
   			self.rating = response.response.venue.rating;
   			self.ratingStyle = response.response.venue.ratingColor;
@@ -147,7 +149,7 @@ var Point = function(place) {
 
   /**
    * Fetch photos of the location using the venue ID provided by 
-   * getInfo.
+   * getInfo. Venue ID is required.
   */
   self.getPhotos = function(venueID) {
   	var requestAPI = "https://api.foursquare.com/v2/venues/"+venueID+"/photos?client_id="+client_id+"&client_secret="+secret+"&v=20161002";
@@ -219,6 +221,11 @@ var Point = function(place) {
 		self.marker.setAnimation(null);
 	});
 
+	/**
+	 * As "tapping" on markers proved to be difficult on some mobile 
+	 * devices. "mousedown" is used instead of "click" to optimize 
+	 * usability across devices.
+	*/
 	self.marker.addListener("mousedown", function() {
 		/**
 		 * Update the selected to the current Point object.
@@ -275,16 +282,29 @@ var ViewModel = function(list) {
     });
 	});
 
+	/**
+	 * Centers the map and return the zoom level to it's original 
+	 * value.
+	*/
 	self.centerMe = function() {
 	  map.setCenter(center);
 	  map.setZoom(12);
 	}
 
+	/**
+	 * Opens the left slide menu and re center the map 
+	 * to fit the narrower map view.
+	*/
 	self.slideMenu = function() {
 	  slideLeft.open();
 	  map.panBy(-200, 0);
 	}
 
+	/**
+	 * Opens the left push menu, re fit the map.
+	 * If the slide menu is open, it will close it before the push
+	 * menu is opened.
+	*/
 	self.pushMenu = function() {
 	  slideLeft.close();
 	  pushLeft.open();
@@ -293,6 +313,9 @@ var ViewModel = function(list) {
 	  map.panBy(150, 0);
 	}
 
+	/**
+	 * CLoses the bottom slide menu.
+	*/
 	self.closeMenu = function() {
 	  slideBottom.close();
 	}

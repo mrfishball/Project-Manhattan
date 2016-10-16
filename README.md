@@ -5,6 +5,7 @@ Project Manhattan v1.1
 	Changes v1.1:
 		- Added Google Maps API request fallback.
 		- NEW layout for the location info page and gallery.
+		- Fixed markers not triggering the bottom menu when tapped on mobile device.
 
 	Changes v1.0:
 

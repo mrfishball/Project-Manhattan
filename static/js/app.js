@@ -202,6 +202,7 @@ var Point = function(place) {
 	}
 
 	self.mobileFocus = function() {
+		viewModel.setIsSelected();
 		map.setZoom(16);
 		map.setCenter(self.marker.position);
 		map.panBy(0, -200);
@@ -277,6 +278,11 @@ var ViewModel = function(list) {
 	*/
 	self.selected = ko.observable(self.allPlaces()[0]);
 	self.search = ko.observable("");
+	self.isSelected = ko.observable(false),
+  
+  self.setIsSelected = function () {
+  	!self.isSelected() ? self.isSelected(true) : self.isSelected(false);
+  }
 	/**
 	 * Filter locations out of the menu view for any unmatched results.
 	 * Filter by name, description and type.

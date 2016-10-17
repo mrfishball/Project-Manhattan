@@ -227,12 +227,12 @@ input[type="text"] {
 		display: none;
 	}
 
-	#pac-input-mobile:focus + .results {
+/*	#pac-input-mobile:focus + .results {
 	 display: block;
-	}
+	}*/
 
 	.results {
-	  display: none;
+	  display: block;
 	  position: absolute;
 	  top: 60px;
 	  left: 0;

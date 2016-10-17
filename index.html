@@ -25,8 +25,8 @@
 	     		</div>
 	     		<input id="pac-input" class="controls" type="text" placeholder="Search..." data-bind="event: { focus: pushMenu }, value: search, valueUpdate: 'keyup'" autocomplete="off">
 	     		<!-- <input id="pac-input-mobile" class="controls" type="text" placeholder="Search..." data-bind="event: { focus: mobileSearch }, value: search, valueUpdate: 'keyup'" autocomplete="off"> -->
-	     		<input id="pac-input-mobile" class="controls" type="text" placeholder="Search..." data-bind="event: { focus: mobileSearch }, value: search, valueUpdate: 'keyup'" autocomplete="off">
-					<nav class="results">
+	     		<input id="pac-input-mobile" class="controls" type="text" placeholder="Search..." data-bind="event: { focus: mobileSearch }, hasFocus: isSelected, value: search, valueUpdate: 'keyup'" autocomplete="on">
+					<nav class="results" data-bind="visible: isSelected">
 						<ul class="search-items" data-bind="foreach: searchResult">
 							<li class="search-item" data-bind="event: { mousedown: mobileFocus }">
 								<h4 data-bind="text: name"></h4>

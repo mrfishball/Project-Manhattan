@@ -238,32 +238,36 @@ input[type="text"] {
 	  left: 0;
 	  right: 0;
 	  z-index: 10;
-	  padding: 15px 15px 15px 15px;
 	  margin: 0;
 	  background-color: #fff;
 	  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02);
 		-moz-box-shadow: 0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02);
 	  box-shadow: 0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02);
-	  height: 60vh;
+	  max-height: 50vh;
 	  overflow-x: auto;
 
 	}
 
-	.results li {
+	.results .search-items .search-item {
 		list-style: none;
 		cursor: pointer;
 		display: block;
 		height: 80px;
-		margin: 10px 10px 10px 10px;
-		border: 1px solid #000;
+		left: 0;
+	  right: 0;
+		border-bottom: 1px solid #e5e5e5;
 	}
 
 	.header-nav h4 {
 		display: block;
 		font-weight: lighter;
 		line-height: 80px;
-		margin: 0 auto;
+		margin-left: 35px;
 		font-size: 1.2em;
+	}
+
+	.results .search-items .search-item:hover {
+		background-color: #e5e5e5;
 	}
 /*
 	.results li:first-child {

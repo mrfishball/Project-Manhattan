@@ -203,6 +203,7 @@ var Point = function(place) {
 
 	self.mobileFocus = function() {
 		viewModel.setIsSelected();
+		$("#pac-input-mobile").attr("value", self.name);
 		map.setZoom(16);
 		map.setCenter(self.marker.position);
 		map.panBy(0, -200);

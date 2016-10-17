@@ -20,12 +20,13 @@
 		<div id="wrapper">
 			<div class="header">
 		    <div class="header-nav">
-		    	<img src="static/img/logo.svg">
+		    	<!-- <img src="static/img/logo.svg" data-bind="event: { click: setIsSelected }"> -->
 	     		<div id="hamburger-menu" class="slider disabler" data-bind="event: { mousedown: slideMenu }">
 	     		</div>
 	     		<input id="pac-input" class="controls" type="text" placeholder="Search..." data-bind="event: { focus: pushMenu }, value: search, valueUpdate: 'keyup'" autocomplete="off">
 	     		<!-- <input id="pac-input-mobile" class="controls" type="text" placeholder="Search..." data-bind="event: { focus: mobileSearch }, value: search, valueUpdate: 'keyup'" autocomplete="off"> -->
-	     		<input id="pac-input-mobile" class="controls" type="text" placeholder="Search..." data-bind="event: { focus: mobileSearch }, hasFocus: isSelected, value: search, valueUpdate: 'keyup'" autocomplete="on">
+	     		<input id="pac-input-mobile" class="controls" type="text" placeholder="Search..." data-bind="event: { focus: mobileSearch }, hasFocus: isSelected, value: search, valueUpdate: 'keyup'" autocomplete="off">
+	     		<div id="menu-mobile" data-bind="event: { click: setIsSelected }"><i class="fa fa-caret-down" aria-hidden="true"></i></div>
 					<nav class="results" data-bind="visible: isSelected">
 						<ul class="search-items" data-bind="foreach: searchResult">
 							<li class="search-item" data-bind="event: { mousedown: mobileFocus }">
@@ -38,6 +39,7 @@
 						  </li>
 					  </ul>
 					</nav>
+
 	     		<div id="my-location" class="slider" data-bind="event: { mousedown: centerMe }"><i class="fa fa-location-arrow slider" aria-hidden="true"></i></div>
 		    </div>
 					

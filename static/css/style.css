@@ -110,7 +110,7 @@ input[type="text"] {
 	position: absolute;
 }
 
-.fa-location-arrow {
+.fa-location-arrow {
 	color: #000;
 }
 
@@ -119,7 +119,11 @@ input[type="text"] {
 		margin-left: 10px;
 	}
 
-	.header-nav img {
+/*	.header-nav img {
+		display: none;
+	}*/
+
+	#menu-mobile {
 		display: none;
 	}
 
@@ -212,14 +216,14 @@ input[type="text"] {
 		width: 95vw;
 	}
 
-	.header-nav img {
+	.header-nav i {
 		width: 25px;
 		margin-top: 7px;
 		margin-left: 9px;
 	}
 
 	#pac-input-mobile {
-		margin-left: 7px;
+		margin-left: 25px;
 		width: 100%;
 	}
 
@@ -227,9 +231,13 @@ input[type="text"] {
 		display: none;
 	}
 
-/*	#pac-input-mobile:focus + .results {
-	 display: block;
-	}*/
+	#my-location {
+		margin-bottom: 5px;
+	}
+
+	#menu-mobile {
+		margin-bottom: 5px;
+	}
 
 	.results {
 	  display: block;
@@ -245,7 +253,6 @@ input[type="text"] {
 	  box-shadow: 0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02);
 	  max-height: 50vh;
 	  overflow-x: auto;
-
 	}
 
 	.results .search-items .search-item {
@@ -269,74 +276,6 @@ input[type="text"] {
 	.results .search-items .search-item:hover {
 		background-color: #e5e5e5;
 	}
-/*
-	.results li:first-child {
-		margin-top: -1px;
-	}
-
-	.results li:first-child:before,
-	.results li:first-child:after {
-	  display: block;
-	  content: '';
-	  width: 0;
-	  height: 0;
-	  position: absolute;
-	  left: 50%;
-	  margin-left: -5px;
-	  border: 5px outset transparent;
-	}
-
-	.results li:first-child:before {
-	  border-bottom: 5px solid #c4c7d7;
-	  top: -11px;
-	}
-
-	.results li:first-child:after {
-	  border-bottom: 5px solid #fdfdfd;
-	  top: -10px;
-	}
-
-	.results li:first-child:hover:before,
-	.results li:first-child:hover:after {
-	 display: none;
-	}
-
-	.results li:last-child {
-		margin-bottom: -1px;
-	}*/
-/*
-	.results a {
-	  display: block;
-	  position: relative;
-	  margin: 0 -1px;
-	  padding: 6px 40px 6px 10px;
-	  color: #808394;
-	  font-weight: 500;
-	  text-shadow: 0 1px #fff;
-	  border: 1px solid transparent;
-	  border-radius: 3px;
-	}
-
-	.results a span {
-		font-weight: 200;
-	}
-
-	.results a:before {
-	  content: '';
-	  width: 18px;
-	  height: 18px;
-	  position: absolute;
-	  top: 50%;
-	  right: 10px;
-	  margin-top: -9px;
-	}
-
-	.results a:hover {
-	  text-decoration: none;
-	  color: #fff;
-	  text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
-	  border-color: #2380dd #2179d5 #1a60aa;
-	}*/
 
 	.menu-slide-bottom {
 	  width: 100vw;

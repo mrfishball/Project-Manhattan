@@ -142,7 +142,6 @@ var Point = function(place) {
 	*/
   self.getInfo = function(venueID) {
   	var requestAPI = "https://api.foursquare.com/v2/venues/"+venueID+"?client_id="+client_id+"&client_secret="+secret+"&v=20161002";
-  	console.log(requestAPI);
   	$.getJSON(requestAPI).done(function(response) {
   			self.categories = response.response.venue.categories.map(function(place) {
   				return place.name;
@@ -282,7 +281,12 @@ var ViewModel = function(list) {
 	self.isSelected = ko.observable(false),
   
   self.setIsSelected = function () {
-  	!self.isSelected() ? self.isSelected(true) : self.isSelected(false);
+  	if (self.isSelected()) {
+  		self.isSelected(false);
+  	} else {
+  		self.isSelected(true);
+  	}
+  	console.log(self.isSelected());
   }
 	/**
 	 * Filter locations out of the menu view for any unmatched results.
